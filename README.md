@@ -9,10 +9,17 @@
 ## Functionality
 
 ## Files
- *
- *
- *
- *
+ * bin/metrics-windows-ram-usage
+ * bin/metrics-windows-cpu-load
+ * bin/metrics-windows-disk-usage
+ * bin/metrics-iis-get-requests
+ * bin/metrics-iis-current-connections
+ * bin/check-windows-service
+ * bin/check-windows-process
+ * bin/extension-wmi-metrics
+ * bin/check-windows-disk
+ * bin/check-windows-cpu-load
+ * bin/check-iis-current-connections
 
 ## Usage
 
