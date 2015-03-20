@@ -1,10 +1,10 @@
-## Sensu-Plugins-disk-checks
+## Sensu-Plugins-windowss
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-windows.svg?branch=master)][1]
-[![Gem Version](https://badge.fury.io/rb/sensu-plugins-windows.svg)][2]
-[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/gpa.svg)][3]
-[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/coverage.svg)][4]
-[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-windows.svg)][5]
+[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-windowss.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-windowss)
+[![Gem Version](https://badge.fury.io/rb/sensu-plugins-windowss.svg)](http://badge.fury.io/rb/sensu-plugins-windowss)
+[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windowss/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windowss)
+[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windowss/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windowss)
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-windowss.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-windowss)
 
 ## Functionality
 
@@ -40,7 +40,7 @@ You can also download the key from /certs/ within each repository.
 
 #### Bundler
 
-Add *sensu-plugins-disk-checks* to your Gemfile and run `bundle install` or `bundle update`
+Add *sensu-plugins-windowss* to your Gemfile and run `bundle install` or `bundle update`
 
 #### Chef
 
