@@ -25,13 +25,15 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
+#
+# Check Database
+#
 class CheckDatabase < Sensu::Plugin::Check::CLI
   option :process, short: '-p process'
 
-  def run
+  def run # rubocop:disable all
     temp = system('tasklist|findstr /i ' + config[:process])
     puts temp
     if temp == false

@@ -29,17 +29,19 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
+#
+# ram Metric
+#
 class RamMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}"
 
-  def acquire_ram_usage
+  def acquire_ram_usage # rubocop:disable all
     temp_arr_1 = []
     temp_arr_2 = []
     timestamp = Time.now.utc.to_i

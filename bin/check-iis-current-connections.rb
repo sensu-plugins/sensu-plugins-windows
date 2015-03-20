@@ -24,9 +24,11 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
+#
+# Check IIS Current Connections
+#
 class CheckIisCurrentConnections < Sensu::Plugin::Check::CLI
   option :warning,
          short: '-w WARNING',
@@ -42,7 +44,7 @@ class CheckIisCurrentConnections < Sensu::Plugin::Check::CLI
          short: '-s sitename',
          default: '_Total'
 
-  def run
+  def run # rubocop:disable all
     io = IO.popen("typeperf -sc 1 \"Web Service(#{config[:site]})\\Current\ Connections\"")
     current_connection = io.readlines[2].split(',')[1].gsub(/"/, '').to_f
     critical "Current Connectio at #{current_connection}" if current_connection > config[:critical]

@@ -25,10 +25,12 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
+#
+# IIS Current Connections Metric
+#
 class IisCurrentConnectionsMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
@@ -39,7 +41,7 @@ class IisCurrentConnectionsMetric < Sensu::Plugin::Metric::CLI::Graphite
          short: '-s sitename',
          default: '_Total'
 
-  def run
+  def run # rubocop:disable all
     io = IO.popen("typeperf -sc 1 \"Web Service(#{config[:site]})\\Current\ Connections\"")
     current_connection = io.readlines[2].split(',')[1].gsub(/"/, '').to_f
 

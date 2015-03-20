@@ -26,10 +26,12 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
+#
+# Disk Usage Metric
+#
 class DiskUsageMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
@@ -50,7 +52,7 @@ class DiskUsageMetric < Sensu::Plugin::Metric::CLI::Graphite
 
   BYTES_TO_MBYTES = 1024 * 1024
 
-  def run
+  def run # rubocop:disable all
     `wmic logicaldisk get caption, drivetype, freespace, size`.split(/\n+/).each do |line|
       caption, drivetype, freespace, size = line.split
       next unless drivetype.to_i == 3

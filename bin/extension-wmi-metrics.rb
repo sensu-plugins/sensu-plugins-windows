@@ -1,8 +1,22 @@
-# WMI Metrics
-# ===
+#! /usr/bin/env ruby
 #
+#   WMI Metrics
+#
+# DESCRIPTION:
 # Collects a variety of system metrics every 10 seconds (by default).
 # Expects a "graphite" handler on the Sensu server, eg:
+#
+# OUTPUT:
+#   metric data
+#
+# PLATFORMS:
+#   Windows
+#
+# DEPENDENCIES:
+#   gem: sensu-plugin
+#   gem: socket
+#
+# USAGE:
 #
 # "graphite": {
 #   "type": "tcp",
@@ -13,15 +27,22 @@
 #   "mutator": "only_check_output"
 # }
 #
-# Copyright 2014 Heavy Water Operations, LLC.
+# NOTES:
+#  Tested on Windows 2012RC2.
 #
-# Released under the same terms as Sensu (the MIT license); see LICENSE
-# for details.
+# LICENSE:
+#   Copyright 2014 Heavy Water Operations, LLC.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
 
 require 'win32ole'
 
 module Sensu
   module Extension
+    #
+    #
+    #
     class WMIMetrics < Check
       def name
         'wmi_metrics'
@@ -81,7 +102,7 @@ module Sensu
         metrics
       end
 
-      def add_metric(*args)
+      def add_metric(*args) # rubocop:disable all
         value = args.pop
         path = []
         path << options[:path_prefix] if options[:prefix_at_start]

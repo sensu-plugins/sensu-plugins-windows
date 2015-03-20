@@ -29,9 +29,11 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
+#
+# Check Disk
+#
 class CheckDisk < Sensu::Plugin::Check::CLI
   option :fstype,
          short: '-t TYPE',
@@ -61,7 +63,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
     @warn_fs = []
   end
 
-  def read_wmic
+  def read_wmic # rubocop:disable all
     `wmic volume where DriveType=3 list brief`.split("\n").drop(1).each do |line|
       begin
         # #YELLOW

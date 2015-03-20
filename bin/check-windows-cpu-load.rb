@@ -24,9 +24,11 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
+#
+# Check Windows CPU Load
+#
 class CheckWindowsCpuLoad < Sensu::Plugin::Check::CLI
   option :warning,
          short: '-w WARNING',
@@ -38,7 +40,7 @@ class CheckWindowsCpuLoad < Sensu::Plugin::Check::CLI
          default: 95,
          proc: proc(&:to_i)
 
-  def run
+  def run # rubocop:disable all
     io = IO.popen("typeperf -sc 1 \"processor(_total)\\% processor time\"")
     cpu_load = io.readlines[2].split(',')[1].gsub(/"/, '').to_i
     critical "CPU at #{cpu_load}%" if cpu_load > config[:critical]

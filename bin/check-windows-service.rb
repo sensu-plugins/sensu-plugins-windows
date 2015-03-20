@@ -16,7 +16,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
 #
 # USAGE:
 #
@@ -29,16 +28,18 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
+#
+# Check Win Services
+#
 class CheckWinService < Sensu::Plugin::Check::CLI
   option :service,
          description: 'Check for a specific service',
          long: '--service SERVICE',
          short: '-s SERVICE'
 
-  def run
+  def run # rubocop:disable all
     temp = system('tasklist /svc|findstr /i ' + config[:service])
     if temp == false
       message config[:service] + ' is not running'

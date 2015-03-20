@@ -61,9 +61,3 @@ end
 ```
 
 ## Notes
-
-[1]:[https://travis-ci.org/sensu-plugins/sensu-plugins-windows]
-[2]:[http://badge.fury.io/rb/sensu-plugins-windows]
-[3]:[https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows]
-[4]:[https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows]
-[5]:[https://gemnasium.com/sensu-plugins/sensu-plugins-windows]
