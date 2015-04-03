@@ -9,17 +9,17 @@
 ## Functionality
 
 ## Files
- * bin/metrics-windows-ram-usage
- * bin/metrics-windows-cpu-load
- * bin/metrics-windows-disk-usage
- * bin/metrics-iis-get-requests
- * bin/metrics-iis-current-connections
- * bin/check-windows-service
- * bin/check-windows-process
- * bin/extension-wmi-metrics
- * bin/check-windows-disk
- * bin/check-windows-cpu-load
- * bin/check-iis-current-connections
+ * bin/metrics-windows-ram-usage.rb
+ * bin/metrics-windows-cpu-load.rb
+ * bin/metrics-windows-disk-usage.rb
+ * bin/metrics-iis-get-requests.rb
+ * bin/metrics-iis-current-connections.rb
+ * bin/check-windows-service.rb
+ * bin/check-windows-process.rb
+ * bin/extension-wmi-metrics.rb
+ * bin/check-windows-disk.rb
+ * bin/check-windows-cpu-load.rb
+ * bin/check-iis-current-connections.rb
 
 ## Usage
 
@@ -48,7 +48,7 @@ Using the Sensu **sensu_gem** LWRP
 ```
 sensu_gem 'sensu-plugins-windows' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1.alpha.1'
 end
 ```
 
@@ -56,7 +56,7 @@ Using the Chef **gem_package** resource
 ```
 gem_package 'sensu-plugins-windows' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1.alpha.1'
 end
 ```
 

@@ -10,3 +10,5 @@
 
 * fix rubocop issues
 * add gem metadata
+* add new version and bump tasks
+* add new version modules
