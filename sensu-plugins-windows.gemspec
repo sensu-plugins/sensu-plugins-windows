@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended'
   }
-  s.name                   = 'sensu-plugins-sensu-plugins-windows'
+  s.name                   = 'sensu-plugins-windows'
   s.platform               = Gem::Platform::RUBY
   s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 1.9.3'
