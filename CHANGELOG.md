@@ -5,3 +5,8 @@
 #### 0.0.1.alpha.2
 
 * build passes
+
+#### 0.0.1.alpha.2
+
+* fix rubocop issues
+* add gem metadata
