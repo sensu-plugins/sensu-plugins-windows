@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   disk-usage-metrics
+#   metrics-windows-disk-usage.rb
 #
 # DESCRIPTION:
 #   This plugin collects disk capacity metrics.
@@ -14,7 +14,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #

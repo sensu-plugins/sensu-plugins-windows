@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   check-windows-cpu-load
+#   check-windows-cpu-load.rb
 #
 # DESCRIPTION:
 #

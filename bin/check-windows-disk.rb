@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   check-disk-windows
+#   check-windows-disk.rb
 #
 # DESCRIPTION:
 #   This is mostly copied from the original check-disk.rb plugin and modified

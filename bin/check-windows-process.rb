@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   check-process
+#   check-windows-process.rb
 #
 # DESCRIPTION:
 #   This plugin checks whether a User-inputted process is running or not

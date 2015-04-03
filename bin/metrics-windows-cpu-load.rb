@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   windows-cpu-load-metrics
+#   metrics-windows-cpu-load.rb
 #
 # DESCRIPTION:
 #   This is metrics which outputs the CPU load in Graphite acceptable format.
@@ -15,7 +15,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #

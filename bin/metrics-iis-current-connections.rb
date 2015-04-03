@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   iis-current-connections-metrics
+#   metrics-iis-current-connections.rb
 #
 # DESCRIPTION:
 #
@@ -12,7 +12,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #

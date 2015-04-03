@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   ram-usage-windows
+#   ram-usage-windows.rb
 #
 # DESCRIPTION:
 #   This is metrics which outputs the Ram usage in Graphite acceptable format.
@@ -17,7 +17,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #

@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   check-service-windows
+#   check-service-windows.rb
 #
 # DESCRIPTION:
 #   Check Named Windows Service Plugin

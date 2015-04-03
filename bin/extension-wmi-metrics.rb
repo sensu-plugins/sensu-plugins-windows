@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   WMI Metrics
+#   extension-wmi-metrics.rb
 #
 # DESCRIPTION:
 # Collects a variety of system metrics every 10 seconds (by default).
@@ -14,7 +14,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #
