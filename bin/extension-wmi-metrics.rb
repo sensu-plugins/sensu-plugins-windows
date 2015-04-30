@@ -96,8 +96,7 @@ module Sensu
           interval: 60,
           handler: 'graphite',
           add_client_prefix: true,
-          path_prefix: 'WMI',
-          prefix_at_start: 0
+          path_prefix: 'WMI'
         }
         if settings[:wmi_metrics].is_a?(Hash)
           @options.merge!(settings[:wmi_metrics])
@@ -114,9 +113,8 @@ module Sensu
       def add_metric(*args) # rubocop:disable all
         value = args.pop
         path = []
-        path << options[:path_prefix] if options[:prefix_at_start]
         path << settings[:client][:name] if options[:add_client_prefix]
-        path << options[:path_prefix] unless options[:prefix_at_start]
+        path << options[:path_prefix]
         path = (path + args).join('.')
 
         @metrics[path] = 0 if @metrics[path].nil?
