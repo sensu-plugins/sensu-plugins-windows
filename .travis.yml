@@ -15,7 +15,7 @@ notifications:
     on_failure: always
   email:
     recipients:
-      - mattjones@yieldbot.com
+      - sensu-plugin@sensu-plugins.io
       - rich.m.chatterton@gmail.com
     on_success: change
     on_failure: always
