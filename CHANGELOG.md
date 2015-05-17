@@ -1,10 +1,12 @@
-#### 0.0.1.alpha.1
+#Change Log
+This project adheres to [Semantic Versioning](http://semver.org/).
 
-* initial release, same as community plugins repo
+This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-#### 0.0.1.alpha.2
+## Unreleased][unreleased]
 
-* build passes
+* sync base files with other sensu plugins repositories
+
 
 #### 0.0.1.alpha.2
 
@@ -12,3 +14,13 @@
 * add gem metadata
 * add new version and bump tasks
 * add new version modules
+
+
+#### 0.0.1.alpha.2
+
+* build passes
+
+
+#### 0.0.1.alpha.1
+
+* initial release, same as community plugins repo
