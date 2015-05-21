@@ -5,22 +5,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased][unreleased]
 
-* sync base files with other sensu plugins repositories
+## 0.0.1 - 2015-04-30
 
+### Added
+- initial release
 
-#### 0.0.1.alpha.2
-
-* fix rubocop issues
-* add gem metadata
-* add new version and bump tasks
-* add new version modules
-
-
-#### 0.0.1.alpha.2
-
-* build passes
-
-
-#### 0.0.1.alpha.1
-
-* initial release, same as community plugins repo

@@ -5,6 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-windows.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-windows)
+[ ![Codeship Status for sensu-plugins/sensu-plugins-windows](https://codeship.com/projects/36b6a840-e20b-0132-647e-4ea0dd54b93d/status?branch=master)](https://codeship.com/projects/81375)
 
 ## Functionality
 
@@ -16,7 +17,6 @@
  * bin/metrics-iis-current-connections.rb
  * bin/check-windows-service.rb
  * bin/check-windows-process.rb
- * bin/extension-wmi-metrics.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-cpu-load.rb
  * bin/check-iis-current-connections.rb
@@ -25,39 +25,6 @@
 
 ## Installation
 
-Add the public key (if you haven’t already) as a trusted certificate
-
-```
-gem cert --add <(curl -Ls https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem)
-gem install sensu-plugins-windows -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install sensu-plugins-windows`
-
-#### Bundler
-
-Add *sensu-plugins-windows* to your Gemfile and run `bundle install` or `bundle update`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem 'sensu-plugins-windows' do
-  options('--prerelease')
-  version '0.0.1.alpha.1'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package 'sensu-plugins-windows' do
-  options('--prerelease')
-  version '0.0.1.alpha.1'
-end
-```
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
 ## Notes

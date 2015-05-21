@@ -9,11 +9,6 @@ rvm:
   - 2.1
   - 2.2
 notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#sensu"
-    on_success: change
-    on_failure: always
   email:
     recipients:
       - sensu-plugin@sensu-plugins.io
