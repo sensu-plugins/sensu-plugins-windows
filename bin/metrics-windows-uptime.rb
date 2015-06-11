@@ -47,7 +47,7 @@ class UptimeMetric < Sensu::Plugin::Metric::CLI::Graphite
   def run
     # To get the uptime usage
     values = acquire_uptime
-	output [config[:scheme], 'system', 'uptime'].join('.'), values[0], values[1]
+    output [config[:scheme], 'system', 'uptime'].join('.'), values[0], values[1]
     ok
   end
 end
