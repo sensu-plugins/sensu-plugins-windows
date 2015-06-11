@@ -30,7 +30,7 @@ require 'sensu-plugin/metric/cli'
 require 'socket'
 require 'time'
 
-class RamMetric < Sensu::Plugin::Metric::CLI::Graphite
+class UptimeMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
          long: '--scheme SCHEME',
@@ -45,7 +45,7 @@ class RamMetric < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def run
-    # To get the ram usage
+    # To get the uptime usage
     values = acquire_uptime
 	output [config[:scheme], 'system', 'uptime'].join('.'), values[0], values[1]
     ok
