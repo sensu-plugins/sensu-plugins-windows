@@ -71,5 +71,4 @@ class IisMetric < Sensu::Plugin::Metric::CLI::Graphite
     end
     ok
   end
-
 end
