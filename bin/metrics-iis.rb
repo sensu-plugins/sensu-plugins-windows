@@ -55,7 +55,7 @@ class IisMetric < Sensu::Plugin::Metric::CLI::Graphite
           next if k == row.headers[0]
           next unless v && k
           break if v.start_with? 'Exiting'
-      
+
           path = k.split('\\')
           service = path[3]
           metric = path[4]
