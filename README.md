@@ -13,13 +13,10 @@
  * bin/metrics-windows-ram-usage.rb
  * bin/metrics-windows-cpu-load.rb
  * bin/metrics-windows-disk-usage.rb
- * bin/metrics-iis-get-requests.rb
- * bin/metrics-iis-current-connections.rb
  * bin/check-windows-service.rb
  * bin/check-windows-process.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-cpu-load.rb
- * bin/check-iis-current-connections.rb
 
 ## Usage
 
