@@ -10,13 +10,15 @@
 ## Functionality
 
 ## Files
- * bin/metrics-windows-ram-usage.rb
  * bin/metrics-windows-cpu-load.rb
  * bin/metrics-windows-disk-usage.rb
- * bin/check-windows-service.rb
- * bin/check-windows-process.rb
+ * bin/metrics-windows-network.rb
+ * bin/metrics-windows-ram-usage.rb
+ * bin/check-windows-cpu-load.rb 
  * bin/check-windows-disk.rb
- * bin/check-windows-cpu-load.rb
+ * bin/check-windows-process.rb
+ * bin/check-windows-ram.rb
+ * bin/check-windows-service.rb
 
 ## Usage
 
