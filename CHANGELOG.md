@@ -6,6 +6,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## Unreleased][unreleased]
 ### Added
 - windows uptime metrics
+- windows RAM metrics
 - removed IIS check / metrics plugins and moved them to their own sensu iis plugin repository
 
 ## [0.0.2] - 2015-06-03
