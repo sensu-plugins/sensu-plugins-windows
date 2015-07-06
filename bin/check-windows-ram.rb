@@ -52,7 +52,7 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
     ram_use_percent = (total_ram_in_bytes - ram_available_in_bytes) * 100.0 / (total_ram_in_bytes)
     ram_use_percent.round(2)
   end
-         
+
   def run # rubocop:disable all
     ram_load = acquire_ram_usage
     critical "RAM at #{ram_load}%" if ram_load > config[:critical]
