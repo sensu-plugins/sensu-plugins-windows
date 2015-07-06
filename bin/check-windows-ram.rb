@@ -43,7 +43,6 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
   def acquire_ram_usage # rubocop:disable all
     temp_arr_1 = []
     temp_arr_2 = []
-    timestamp = Time.now.utc.to_i
     IO.popen("typeperf -sc 1 \"Memory\\Available bytes\" ") { |io| io.each { |line| temp_arr_1.push(line) } }
     temp = temp_arr_1[2].split(',')[1]
     ram_available_in_bytes = temp[1, temp.length - 3].to_f
