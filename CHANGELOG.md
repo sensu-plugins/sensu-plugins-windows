@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased][unreleased]
 
+## [0.0.5] - 2015-07-14
+### Changed
+- updated sensu-plugin gem to 1.2.0
+
 ## [0.0.4] - 2015-07-05
 ### Added
 - windows uptime metrics
