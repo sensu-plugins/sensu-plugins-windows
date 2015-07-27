@@ -32,13 +32,13 @@ require 'win32ole'
 options = {}
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: check-windows-process.rb [options]'
-  opts.on( '-h', '--help', 'Display this screen' ) do
+  opts.on('-h', '--help', 'Display this screen') do
     puts opts
     exit
   end
 
   options[:procname] = ''
-  opts.on( '-p', '--processname PROCESS', 'Unique process string to search for.' ) do |p|
+  opts.on('-p', '--processname PROCESS', 'Unique process string to search for.') do |p|
     options[:procname] = p
     if p == ''
       STDERR.puts 'Empty string for -p : Expected a string to match against.'
@@ -47,7 +47,7 @@ parser = OptionParser.new do |opts|
   end
 
   options[:warn] = nil
-  opts.on( '-w', '--warning [SECONDS]', 'Minimum process age in secs - Else warn') do |w|
+  opts.on('-w', '--warning [SECONDS]', 'Minimum process age in secs - Else warn') do |w|
     begin
       options[:warn] = Integer(w)
     rescue ArgumentError
@@ -61,16 +61,16 @@ parser.parse!
 
 if options[:procname] == ''
   STDERR.puts 'Expected a process to match against.'
-  raise OptionParser::MissingArgument
+  fail OptionParser::MissingArgument
 end
 
 wmi = WIN32OLE.connect('winmgmts://')
 
 # Assume Critical error (2) if this loop fails
 status = 2
-for process in wmi.ExecQuery('select * from win32_process') do
+wmi.ExecQuery('select * from win32_process').each do |process|
   if process.Name.include? options[:procname]
-    if (options[:warn] != nil)
+    if (!options[:warn].nil?)
       delta_days = DateTime.now - DateTime.parse(process.CreationDate)
       delta_secs = (delta_days * 24 * 60 * 60).to_i
       if delta_secs > options[:warn]
