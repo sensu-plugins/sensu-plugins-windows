@@ -69,8 +69,8 @@ wmi = WIN32OLE.connect('winmgmts://')
 # Assume Critical error (2) if this loop fails
 status = 2
 wmi.ExecQuery('select * from win32_process').each do |process|
-  if process.Name.include? options[:procname]
-    if (!options[:warn].nil?)
+  if process.Name.downcase.include? options[:procname].downcase
+    if !options[:warn].nil?
       delta_days = DateTime.now - DateTime.parse(process.CreationDate)
       delta_secs = (delta_days * 24 * 60 * 60).to_i
       if delta_secs > options[:warn]
