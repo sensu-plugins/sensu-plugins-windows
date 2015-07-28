@@ -69,21 +69,20 @@ wmi = WIN32OLE.connect('winmgmts://')
 # Assume Critical error (2) if this loop fails
 status = 2
 wmi.ExecQuery('select * from win32_process').each do |process|
-  if process.Name.downcase.include? options[:procname].downcase
-    if !options[:warn].nil?
-      delta_days = DateTime.now - DateTime.parse(process.CreationDate)
-      delta_secs = (delta_days * 24 * 60 * 60).to_i
-      if delta_secs > options[:warn]
-        puts "OK: #{process.Name} running more than #{options[:warn]} seconds."
-        status = 0
-      else
-        puts "WARNING: #{process.Name} only running for #{delta_secs} seconds."
-        status = 1
-      end
-    else
-      puts "OK: #{process.Name} running."
+  next unless process.Name.downcase.include? options[:procname].downcase
+  if !options[:warn].nil?
+    delta_days = DateTime.now - DateTime.parse(process.CreationDate)
+    delta_secs = (delta_days * 24 * 60 * 60).to_i
+    if delta_secs > options[:warn]
+      puts "OK: #{process.Name} running more than #{options[:warn]} seconds."
       status = 0
+    else
+      puts "WARNING: #{process.Name} only running for #{delta_secs} seconds."
+      status = 1
     end
+  else
+    puts "OK: #{process.Name} running."
+    status = 0
   end
 end
 
