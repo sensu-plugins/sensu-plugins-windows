@@ -66,8 +66,9 @@ class GenericMetric < Sensu::Plugin::Metric::CLI::Graphite
       CSV.parse(io.read, headers: true) do |row|
         row.shift
         row.reject { |k, v| !v || !k }.each do |k, v|
-          break if row.to_s.start_with? 'Exiting'
-
+          if row.to_s.start_with? 'Exiting'
+            break
+          end
           key = k.split('\\', 4)[3]
           data = metrics.fetch("\\#{key}", nil)
           next unless data
