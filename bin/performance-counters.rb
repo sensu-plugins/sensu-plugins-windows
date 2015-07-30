@@ -65,7 +65,7 @@ class GenericMetric < Sensu::Plugin::Metric::CLI::Graphite
     IO.popen("typeperf -sc 1 #{flatten} ") do |io|
       CSV.parse(io.read, headers: true) do |row|
         row.shift
-        row.reject{|k, v| !v !! !k}.each do |k, v|
+        row.reject { |k, v| !v || !k }.each do |k, v|
           break if row.to_s.start_with? 'Exiting'
 
           key = k.split('\\', 4)[3]
