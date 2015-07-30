@@ -64,8 +64,8 @@ class GenericMetric < Sensu::Plugin::Metric::CLI::Graphite
     timestamp = Time.now.utc.to_i
     IO.popen("typeperf -sc 1 #{flatten} ") do |io|
       CSV.parse(io.read, headers: true) do |row|
+        row.shift
         row.each do |k, v|
-          next if k == row.headers[0]
           next unless v && k
           break if row.to_s.start_with? 'Exiting'
 
