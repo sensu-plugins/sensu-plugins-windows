@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.6] - 2015-08-04
+### Changed
+- updated check-windows-process to use native WMI hooks
+
 ## [0.0.5] - 2015-07-14
 ### Changed
 - updated sensu-plugin gem to 1.2.0
