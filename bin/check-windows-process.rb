@@ -16,32 +16,78 @@
 #   gem: sensu-plugin
 #
 # USAGE:
+# check-windows-process -p <process substr to match> [ -w <warn age> ]
 #
 # NOTES:
 #
 # LICENSE:
-#   Copyright 2013 <jashishtech@gmail.com>
+#   Copyright 2015 <onetinov@lxrb.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
+require 'optparse'
+require 'time'
+require 'win32ole'
 
-require 'sensu-plugin/check/cli'
+options = {}
+parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: check-windows-process.rb [options]'
+  opts.on('-h', '--help', 'Display this screen') do
+    puts opts
+    exit
+  end
 
-#
-# Check Database
-#
-class CheckDatabase < Sensu::Plugin::Check::CLI
-  option :process, short: '-p process'
+  options[:procname] = ''
+  opts.on('-p', '--processname PROCESS', 'Unique process string to search for.') do |p|
+    options[:procname] = p
+    if p == ''
+      STDERR.puts 'Empty string for -p : Expected a string to match against.'
+      exit 3
+    end
+  end
 
-  def run # rubocop:disable all
-    temp = system('tasklist|findstr /i ' + config[:process])
-    puts temp
-    if temp == false
-      message config[:process] + ' is not running'
-      critical
-    else
-      message config[:process] + ' is running'
-      ok
+  options[:warn] = nil
+  opts.on('-w', '--warning [SECONDS]', 'Minimum process age in secs - Else warn') do |w|
+    begin
+      options[:warn] = Integer(w)
+    rescue ArgumentError
+      STDERR.puts 'Optional -w needs to be a value in seconds'
+      exit 3
     end
   end
 end
+
+parser.parse!
+
+if options[:procname] == ''
+  STDERR.puts 'Expected a process to match against.'
+  fail OptionParser::MissingArgument
+end
+
+wmi = WIN32OLE.connect('winmgmts://')
+
+# Assume Critical error (2) if this loop fails
+status = 2
+wmi.ExecQuery('select * from win32_process').each do |process|
+  next unless process.Name.downcase.include? options[:procname].downcase
+  if !options[:warn].nil?
+    delta_days = DateTime.now - DateTime.parse(process.CreationDate)
+    delta_secs = (delta_days * 24 * 60 * 60).to_i
+    if delta_secs > options[:warn]
+      puts "OK: #{process.Name} running more than #{options[:warn]} seconds."
+      status = 0
+    else
+      puts "WARNING: #{process.Name} only running for #{delta_secs} seconds."
+      status = 1
+    end
+  else
+    puts "OK: #{process.Name} running."
+    status = 0
+  end
+end
+
+if status == 2
+  puts "Critical: #{options[:procname]} not found in winmgmts:root\\cimv2:Win32_Process"
+end
+
+exit status
