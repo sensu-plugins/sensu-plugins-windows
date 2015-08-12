@@ -40,7 +40,7 @@ class RamMetric < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}"
 
-  def acquire_ram_usage # rubocop:disable all
+  def acquire_ram_usage
     temp_arr_1 = []
     temp_arr_2 = []
     timestamp = Time.now.utc.to_i

@@ -51,7 +51,7 @@ class DiskUsageMetric < Sensu::Plugin::Metric::CLI::Graphite
 
   BYTES_TO_MBYTES = 1024 * 1024
 
-  def run # rubocop:disable all
+  def run
     `wmic logicaldisk get caption, drivetype, freespace, size`.split(/\n+/).each do |line|
       caption, drivetype, freespace, size = line.split
       next unless drivetype.to_i == 3

@@ -63,7 +63,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
     @warn_fs = []
   end
 
-  def read_wmic # rubocop:disable all
+  def read_wmic
     `wmic volume where DriveType=3 list brief`.split("\n").drop(1).each do |line|
       begin
         # #YELLOW

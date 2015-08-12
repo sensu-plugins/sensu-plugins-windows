@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.date                   = Date.today.to_s
   s.description            = 'Sensu plugins for Windows'
   s.email                  = '<sensu-users@googlegroups.com>'
-  s.executables            = Dir.glob('bin/**/*').map { |file| File.basename(file) }
+  s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-windows'
   s.license                = 'MIT'
@@ -39,13 +39,13 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'sensu-plugin',      '1.2.0'
 
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
-  s.add_development_dependency 'rubocop',                   '0.30'
-  s.add_development_dependency 'rspec',                     '~> 3.1'
   s.add_development_dependency 'bundler',                   '~> 1.7'
-  s.add_development_dependency 'rake',                      '~> 10.0'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'github-markup',             '~> 1.3'
-  s.add_development_dependency 'redcarpet',                 '~> 3.2'
-  s.add_development_dependency 'yard',                      '~> 0.8'
   s.add_development_dependency 'pry',                       '~> 0.10'
+  s.add_development_dependency 'rake',                      '~> 10.0'
+  s.add_development_dependency 'redcarpet',                 '~> 3.2'
+  s.add_development_dependency 'rubocop',                   '0.32.1'
+  s.add_development_dependency 'rspec',                     '~> 3.1'
+  s.add_development_dependency 'yard',                      '~> 0.8'
 end

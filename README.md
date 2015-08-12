@@ -14,7 +14,8 @@
  * bin/metrics-windows-disk-usage.rb
  * bin/metrics-windows-network.rb
  * bin/metrics-windows-ram-usage.rb
- * bin/check-windows-cpu-load.rb 
+ * bin/metrics-windows-uptime.rb
+ * bin/check-windows-cpu-load.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-process.rb
  * bin/check-windows-ram.rb
@@ -24,6 +25,6 @@
 
 ## Installation
 
-[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
+[Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes

@@ -40,7 +40,7 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
          default: 95,
          proc: proc(&:to_i)
 
-  def acquire_ram_usage # rubocop:disable all
+  def acquire_ram_usage
     temp_arr_1 = []
     temp_arr_2 = []
     IO.popen("typeperf -sc 1 \"Memory\\Available bytes\" ") { |io| io.each { |line| temp_arr_1.push(line) } }
@@ -53,7 +53,7 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
     ram_use_percent.round(2)
   end
 
-  def run # rubocop:disable all
+  def run
     ram_load = acquire_ram_usage
     critical "RAM at #{ram_load}%" if ram_load > config[:critical]
     warning "RAM at #{ram_load}%" if ram_load > config[:warning]

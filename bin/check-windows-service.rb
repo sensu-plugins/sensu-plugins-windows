@@ -39,7 +39,7 @@ class CheckWinService < Sensu::Plugin::Check::CLI
          long: '--service SERVICE',
          short: '-s SERVICE'
 
-  def run # rubocop:disable all
+  def run
     temp = system('tasklist /svc|findstr /i ' + config[:service])
     if temp == false
       message config[:service] + ' is not running'
