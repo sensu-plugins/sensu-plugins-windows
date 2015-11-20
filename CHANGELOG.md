@@ -5,11 +5,15 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.7] - 2015-11-19
+### Fixed
+- metrics-windows-network.rb: remove characters that break graphite metrics
+
 ## [0.0.6] - 2015-08-04
 ### Changed
 - updated check-windows-process to use native WMI hooks
 - bump rubocop
--change binstubs to only be created for ruby files
+- change binstubs to only be created for ruby files
 
 ## [0.0.5] - 2015-07-14
 ### Changed
@@ -37,7 +41,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[unreleased]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.6...HEAD
+[unreleased]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.7...HEAD
+[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.6...0.0.7
 [0.0.6]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.5...0.0.6
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.2...0.0.4
