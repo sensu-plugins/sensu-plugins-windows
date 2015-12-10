@@ -55,8 +55,8 @@ class DiskUsageMetric < Sensu::Plugin::Metric::CLI::Graphite
     `wmic logicaldisk get caption, drivetype, freespace, size`.split(/\n+/).each do |line|
       caption, drivetype, freespace, size = line.split
       next unless drivetype.to_i == 3
-      next if config[:ignore_mnt] && config[:ignore_mnt].find { |x| mnt.match(x) }
-      next if config[:include_mnt] && !config[:include_mnt].find { |x| mnt.match(x) }
+      next if config[:ignore_mnt] && config[:ignore_mnt].find { |x| caption.match(x) }
+      next if config[:include_mnt] && !config[:include_mnt].find { |x| caption.match(x) }
 
       caption = "disk_#{caption[0]}"
       freespace = freespace.to_f / BYTES_TO_MBYTES

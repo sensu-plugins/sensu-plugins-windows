@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.8] - 2015-12-10
+## Fixed
+- metrics-windows-disk-usage.rb incorrect variable
+
 ## [0.0.7] - 2015-11-19
 ### Fixed
 - metrics-windows-network.rb: remove characters that break graphite metrics
