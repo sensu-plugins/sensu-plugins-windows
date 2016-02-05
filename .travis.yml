@@ -1,20 +1,32 @@
 language: ruby
 cache:
-  - bundler
+- bundler
+before_install:
+- openssl aes-256-cbc -K $encrypted_b49cfc76a881_key -iv $encrypted_b49cfc76a881_iv
+  -in certs/pvt_key -out certs/gem-private_key.pem -d
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
-      - rich.m.chatterton@gmail.com
+    - sensu-plugin@sensu-plugins.io
+    - rich.m.chatterton@gmail.com
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-windows.gemspec
+- gem install sensu-plugins-windows-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: W2KKNShjEAeguOSIQZqfX8AlTeJ5P25PRHH/z8rDqHPAGdU1F+b2TkeMaN8q/sG7T7cC73iddFWdDs5A6qHhxrwgPQWFwZFfLClbQnz/ml8lY6h2kfj3VSQf4oxicP/loWWzFv4kIDdxIznjymUsu/p3ySQq8/GNjjpsYACxBas=
+  gem: sensu-plugins-windows
+  on:
+    tags: true
+    repo: sensu-plugins/sensu-plugins-windows

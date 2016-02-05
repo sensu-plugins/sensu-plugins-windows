@@ -3,11 +3,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## Unreleased
+## [Unreleased]
+
+## [0.0.9] - 2016-02-05
+## Added
+- new certs
 
 ## [0.0.8] - 2015-12-10
 ## Fixed
 - metrics-windows-disk-usage.rb incorrect variable
+
 
 ## [0.0.7] - 2015-11-19
 ### Fixed
@@ -32,6 +37,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Removed
 - removed IIS check / metrics plugins and moved them to their own sensu iis plugin repository
 
+## [0.0.3]
+- Pulled
+
 ## [0.0.2] - 2015-06-03
 
 ### Fixed
@@ -45,9 +53,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[unreleased]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.7...HEAD
-[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.6...0.0.7
-[0.0.6]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.5...0.0.6
-[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.4...0.0.5
-[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.2...0.0.4
-[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-ssl/compare/0.0.1...0.0.2
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.9...HEAD
+[0.0.9]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.8...0.0.9
+[0.0.8]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.7...0.0.8
+[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.6...0.0.7
+[0.0.6]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.5...0.0.6
+[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.3...0.0.4
+[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.1...0.0.2

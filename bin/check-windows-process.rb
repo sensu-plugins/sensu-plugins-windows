@@ -61,7 +61,7 @@ parser.parse!
 
 if options[:procname] == ''
   STDERR.puts 'Expected a process to match against.'
-  fail OptionParser::MissingArgument
+  raise OptionParser::MissingArgument
 end
 
 wmi = WIN32OLE.connect('winmgmts://')
