@@ -56,7 +56,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.10...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.10...HEAD
 [0.0.10]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.8..v0.0.9
 [0.0.8]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.7...0.0.8
