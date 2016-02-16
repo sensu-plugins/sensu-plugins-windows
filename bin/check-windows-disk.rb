@@ -71,6 +71,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
         next if /\S/ !~ line
         next if _avail.nil?
         next if line.include?('System Reserved')
+        next if line.include?('\Volume')
         next if config[:fstype] && !config[:fstype].include?(type)
         next if config[:ignoretype] && config[:ignoretype].include?(type)
         next if config[:ignoremnt] && config[:ignoremnt].include?(mnt)
