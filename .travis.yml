@@ -1,9 +1,6 @@
 language: ruby
 cache:
 - bundler
-before_install:
-- openssl aes-256-cbc -K $encrypted_b49cfc76a881_key -iv $encrypted_b49cfc76a881_iv
-  -in certs/pvt_key -out certs/gem-private_key.pem -d
 install:
 - bundle install
 rvm:
@@ -29,4 +26,9 @@ deploy:
   gem: sensu-plugins-windows
   on:
     tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
     repo: sensu-plugins/sensu-plugins-windows

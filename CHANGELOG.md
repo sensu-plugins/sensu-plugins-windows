@@ -3,7 +3,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [Unreleased]
+## 
 
 ## [0.0.10] - 2016-02-16
 ### Fixed
@@ -56,7 +56,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.10...HEAD
+: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.10...HEAD
 [0.0.10]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.8..v0.0.9
 [0.0.8]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.7...0.0.8
