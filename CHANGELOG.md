@@ -44,7 +44,6 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Pulled
 
 ## [0.0.2] - 2015-06-03
-
 ### Fixed
 - added binstubs
 
@@ -52,11 +51,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - removed cruft from /lib
 
 ## 0.0.1 - 2015-05-21
-
 ### Added
 - initial release
 
-: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.10...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.10...HEAD
 [0.0.10]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.8..v0.0.9
 [0.0.8]: https://github.com/sensu-plugins/sensu-plugins-windows/compare/0.0.7...0.0.8
