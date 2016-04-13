@@ -25,7 +25,7 @@ deploy:
     secure: ikQPH10uf07ZuXs64PDeg0wMKMiuINiJiYzncdfe77iI0FFE13kcFYv8T2HxaeXjJPRXkiNkBprld2EG7Sm1Dd7WYKVByW55fIfd96wZe+a/ObPflbHbVb1fbwd5A0kK7BuHgrV1AKb++Nq9LEDJPiPJTgktaM8thJqYkjwDegg=
   gem: sensu-plugins-windows
   on:
-    ags: true
+    tags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
