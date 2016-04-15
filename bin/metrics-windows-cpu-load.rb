@@ -39,21 +39,17 @@ class CpuMetric < Sensu::Plugin::Metric::CLI::Graphite
          default: Socket.gethostname.to_s
 
   def acquire_cpu_load
-
     # The 'typeperf' command to use to get the cpu load
     typeperf_command = 'typeperf -sc 1 "processor(_total)\\% processor time" '
-
-    # The language configured on the Operating System
-    language = 'English'
 
     # Trick to know in which language is the current system, we read the help of the
     # 'typeperf' command and identify patterns to know in which language the
     # Operating System is configured
-    help = IO.popen('typeperf -h').readlines.join("")
-    if help.include? "Compteurs de performances"
+    help = IO.popen('typeperf -h').readlines.join('')
+    if help.include? 'Compteurs de performances'
       typeperf_command = 'typeperf -sc 1 "processeur(_total)\\% temps processeur"'
     end
-    
+
     temp_arr = []
     timestamp = Time.now.utc.to_i
     IO.popen(typeperf_command) { |io| io.each { |line| temp_arr.push(line) } }

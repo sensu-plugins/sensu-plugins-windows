@@ -41,18 +41,14 @@ class CheckWindowsCpuLoad < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i)
 
   def run
-
     # The 'typeperf' command to use to get the cpu load
     typeperf_command = 'typeperf -sc 1 "processor(_total)\\% processor time"'
-
-    # The language configured on the Operating System
-    language = 'English'
 
     # Trick to know in which language is the current system, we read the help of the
     # 'typeperf' command and identify patterns to know in which language the
     # Operating System is configured
-    help = IO.popen('typeperf -h').readlines.join("")
-    if help.include? "Compteurs de performances"
+    help = IO.popen('typeperf -h').readlines.join('')
+    if help.include? 'Compteurs de performances'
       typeperf_command = 'typeperf -sc 1 "processeur(_total)\\% temps processeur"'
     end
 

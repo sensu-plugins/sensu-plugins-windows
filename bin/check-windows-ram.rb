@@ -41,17 +41,16 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i)
 
   def acquire_ram_usage
-
     # The 'typeperf' command to use to get the RAM usage
     typeperf_command = 'typeperf -sc 1 "Memory\\Available bytes" '
 
     # Trick to know in which language is the current system, we read the help of the
     # 'typeperf' command and identify patterns to know in which language the
     # Operating System is configured
-    help = IO.popen('typeperf -h').readlines.join("")
+    help = IO.popen('typeperf -h').readlines.join('')
 
     # French
-    if help.include? "Compteurs de performances"
+    if help.include? 'Compteurs de performances'
       typeperf_command = 'typeperf -sc 1 "Mémoire\Octets disponibles"'
     end
 
