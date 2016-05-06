@@ -64,10 +64,10 @@ class CheckDisk < Sensu::Plugin::Check::CLI
   end
 
   def read_wmic
-    `wmic volume where DriveType=3 list brief`.split("\n").drop(1).each do |line|
+    `wmic volume where DriveType=3 list brief /format:csv`.split("\n").drop(1).each do |line|
       begin
         # #YELLOW
-        capacity, type, _fs, _avail, label, mnt = line.split # rubocop:disable Lint/UnderscorePrefixedVariableName
+        hostname, capacity, type, _fs, _avail, label, mnt = line.split(",") # rubocop:disable Lint/UnderscorePrefixedVariableName
         next if /\S/ !~ line
         next if _avail.nil?
         next if line.include?('System Reserved')
