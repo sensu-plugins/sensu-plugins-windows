@@ -3,7 +3,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## 
+## [Unreleased]
+### Fixed
+- check-windows-disk.rb added CSV formatting for WMIC
 
 ## [0.0.10] - 2016-02-16
 ### Fixed
