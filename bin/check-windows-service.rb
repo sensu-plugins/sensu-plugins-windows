@@ -1,10 +1,10 @@
 #! /usr/bin/env ruby
 #
-#   check-service-windows.rb
+#   check-windows-service.rb
 #
 # DESCRIPTION:
 #   Check Named Windows Service Plugin
-#   This plugin checks whether a User-inputted service on Windows is running or not
+#   This plugin checks whether a User-supplied service on Windows is running or not
 #   This checks users tasklist tool to find any service on Windows is running or not.
 
 #
