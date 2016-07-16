@@ -6,9 +6,6 @@
 #   This is mostly copied from the original check-disk.rb plugin and modified
 #   to use WMIC.  This is our first attempt at writing a plugin for Windows.
 #
-#   Uses Windows WMIC facility. Warning/critical levels are percentages only.
-
-#
 # OUTPUT:
 #   plain text
 #
@@ -22,18 +19,14 @@
 # USAGE:
 #
 # NOTES:
+#   Uses Windows WMIC facility. Warning/critical levels are percentages only.
 #
 # LICENSE:
-#   Copyright 2013 <bp-parks@wiu.edu> <mr-mencel@wiu.edu>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Copyright 2013 <bp-parks@wiu.edu> and <mr-mencel@wiu.edu>
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/check/cli'
 
-#
-# Check Disk
-#
 class CheckDisk < Sensu::Plugin::Check::CLI
   option :fstype,
          short: '-t TYPE',

@@ -1,10 +1,9 @@
 #! /usr/bin/env ruby
 #
-#   metrics-windows-disk-usage.rb
+#   metric-windows-disk-usage.rb
 #
 # DESCRIPTION:
-#   This plugin collects disk capacity metrics.
-#   Created to return values in same format as system/disk-usage-metric
+#   This plugin collects and outputs disk usage metrics in a Graphite acceptable format.
 #
 # OUTPUT:
 #   metric data
@@ -21,16 +20,11 @@
 #
 # LICENSE:
 #   Copyright 2014 <alex.slynko@wonga.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
-#
-# Disk Usage Metric
-#
 class DiskUsageMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',

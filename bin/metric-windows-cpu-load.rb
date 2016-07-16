@@ -1,11 +1,10 @@
 #! /usr/bin/env ruby
 #
-#   metrics-windows-cpu-load.rb
+#   metric-windows-cpu-load.rb
 #
 # DESCRIPTION:
-#   This is metrics which outputs the CPU load in Graphite acceptable format.
-#   To get the cpu stats for Windows Server to send over to Graphite.
-#   It basically uses the typeperf to get the processor usage at a given particular time.
+#   This plugin collects and outputs the CPU load in a Graphite acceptable format.
+#   It uses Typeperf to get the processor usage.
 #
 # OUTPUT:
 #   metric data
@@ -22,16 +21,11 @@
 #
 # LICENSE:
 #   Copyright 2013 <jashishtech@gmail.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
-#
-# Cpu metric
-#
 class CpuMetric < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',

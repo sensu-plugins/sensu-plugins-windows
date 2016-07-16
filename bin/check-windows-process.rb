@@ -3,7 +3,7 @@
 #   check-windows-process.rb
 #
 # DESCRIPTION:
-#   This plugin checks whether a User-inputted process is running or not
+#   This plugin checks whether a User-inputted process is running or not.
 #   This checks users tasklist tool to find any process is running or not.
 #
 # OUTPUT:
@@ -16,14 +16,13 @@
 #   gem: sensu-plugin
 #
 # USAGE:
-# check-windows-process -p <process substr to match> [ -w <warn age> ]
+#   check-windows-process -p <process substr to match> [ -w <warn age> ]
 #
 # NOTES:
 #
 # LICENSE:
 #   Copyright 2015 <onetinov@lxrb.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 require 'optparse'
 require 'time'

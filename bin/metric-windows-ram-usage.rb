@@ -1,13 +1,10 @@
 #! /usr/bin/env ruby
 #
-#   ram-usage-windows.rb
+#   metric-windows-ram-usage.rb
 #
 # DESCRIPTION:
-#   This is metrics which outputs the Ram usage in Graphite acceptable format.
-#   To get the cpu stats for Windows Server to send over to Graphite.
-#   It basically uses the typeperf(To get available memory) and wmic(Used to get the usable memory size)
-#   to get the processor usage at a given particular time.
-#
+#   This plugin collects and outputs the RAM usage in a Graphite acceptable format.
+#   It uses Typeperf to get available memory and WMIC to get the usable memory size.
 #
 # OUTPUT:
 #   metric data
@@ -24,10 +21,8 @@
 #
 # LICENSE:
 #   Copyright 2013 <jashishtech@gmail.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/metric/cli'
 require 'socket'
 

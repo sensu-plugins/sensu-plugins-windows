@@ -3,13 +3,11 @@
 #   check-windows-service.rb
 #
 # DESCRIPTION:
-#   Check Named Windows Service Plugin
 #   This plugin checks whether a User-supplied service on Windows is running or not
 #   This checks users tasklist tool to find any service on Windows is running or not.
-
 #
 # OUTPUT:
-#   plain text, metric data, etc
+#   plain text
 #
 # PLATFORMS:
 #   Windows
@@ -22,17 +20,12 @@
 # NOTES:
 #
 # LICENSE:
-#   Edited from  <jashishtech@gmail.com>
+#   Edited from <jashishtech@gmail.com>
 #   Copyright 2014 <jj.asghar@peopleadmin.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/check/cli'
 
-#
-# Check Win Services
-#
 class CheckWinService < Sensu::Plugin::Check::CLI
   option :service,
          description: 'Check for a specific service',

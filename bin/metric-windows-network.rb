@@ -1,9 +1,9 @@
 #! /usr/bin/env ruby
 #
-#   uptime-windows
+#   metric-windows-network.rb
 #
 # DESCRIPTION:
-#   This is metrics which outputs the uptime in seconds in Graphite acceptable format.
+#   This plugin collects and outputs the uptime in seconds in a Graphite acceptable format.
 #
 # OUTPUT:
 #   metric data
@@ -21,10 +21,8 @@
 #
 # LICENSE:
 #   Copyright 2015 <miguelangel.garcia@gmail.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'socket'

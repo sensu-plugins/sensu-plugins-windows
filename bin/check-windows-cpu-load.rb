@@ -3,6 +3,8 @@
 #   check-windows-cpu-load.rb
 #
 # DESCRIPTION:
+#   This plugin collects and outputs the CPU load in a Graphite acceptable format.
+#   It uses Typeperf to get the processor usage.
 #
 # OUTPUT:
 #   plain text
@@ -20,15 +22,10 @@
 #
 # LICENSE:
 #   Jean-Francois Theroux <me@failshell.io>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/check/cli'
 
-#
-# Check Windows CPU Load
-#
 class CheckWindowsCpuLoad < Sensu::Plugin::Check::CLI
   option :warning,
          short: '-w WARNING',

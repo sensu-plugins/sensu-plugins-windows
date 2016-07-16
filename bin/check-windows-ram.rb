@@ -3,6 +3,8 @@
 #   check-windows-ram.rb
 #
 # DESCRIPTION:
+#   This plugin collects and outputs the RAM usage in a Graphite acceptable format.
+#   It uses Typeperf to get available memory and WMIC to get the usable memory size.
 #
 # OUTPUT:
 #   plain text
@@ -16,19 +18,14 @@
 # USAGE:
 #
 # NOTES:
-#  Tested on Windows 2008RC2.
+#   Tested on Windows 2008RC2.
 #
 # LICENSE:
 #   Jean-Francois Theroux <me@failshell.io>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-
 require 'sensu-plugin/check/cli'
 
-#
-# Check Windows RAM Load
-#
 class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
   option :warning,
          short: '-w WARNING',
