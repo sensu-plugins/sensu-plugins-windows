@@ -23,7 +23,7 @@
 #   Edited from <jashishtech@gmail.com>
 #   Copyright 2014 <jj.asghar@peopleadmin.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
-#   
+#  
 require 'sensu-plugin/check/cli'
 
 class CheckWinService < Sensu::Plugin::Check::CLI

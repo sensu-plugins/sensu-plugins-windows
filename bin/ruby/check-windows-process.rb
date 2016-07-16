@@ -23,7 +23,7 @@
 # LICENSE:
 #   Copyright 2015 <onetinov@lxrb.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
-#   
+#
 require 'optparse'
 require 'time'
 require 'win32ole'

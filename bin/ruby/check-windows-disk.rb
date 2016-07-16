@@ -24,7 +24,7 @@
 # LICENSE:
 #   Copyright 2013 <bp-parks@wiu.edu> and <mr-mencel@wiu.edu>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
-#   
+#
 require 'sensu-plugin/check/cli'
 
 class CheckDisk < Sensu::Plugin::Check::CLI

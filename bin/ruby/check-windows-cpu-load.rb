@@ -23,7 +23,7 @@
 # LICENSE:
 #   Jean-Francois Theroux <me@failshell.io>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
-#   
+#
 require 'sensu-plugin/check/cli'
 
 class CheckWindowsCpuLoad < Sensu::Plugin::Check::CLI
