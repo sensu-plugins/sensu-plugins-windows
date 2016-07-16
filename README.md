@@ -10,16 +10,16 @@
 These files provide basic Checks and Metrics for a Windows system.
 
 ## Files
- * bin/ruby/check-windows-cpu-load.rb
- * bin/ruby/check-windows-disk.rb
- * bin/ruby/check-windows-process.rb
- * bin/ruby/check-windows-ram.rb
- * bin/ruby/check-windows-service.rb
- * bin/ruby/metric-windows-cpu-load.rb
- * bin/ruby/metric-windows-disk-usage.rb
- * bin/ruby/metric-windows-network.rb
- * bin/ruby/metric-windows-ram-usage.rb
- * bin/ruby/metric-windows-uptime.rb
+ * bin/check-windows-cpu-load.rb
+ * bin/check-windows-disk.rb
+ * bin/check-windows-process.rb
+ * bin/check-windows-ram.rb
+ * bin/check-windows-service.rb
+ * bin/metric-windows-cpu-load.rb
+ * bin/metric-windows-disk-usage.rb
+ * bin/metric-windows-network.rb
+ * bin/metric-windows-ram-usage.rb
+ * bin/metric-windows-uptime.rb
 
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
