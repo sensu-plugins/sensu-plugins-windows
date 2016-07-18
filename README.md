@@ -22,7 +22,7 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/metric-windows-ram-usage.rb
  * bin/metric-windows-uptime.rb
 
-### Powwershell
+### Powershell
 
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
