@@ -1,11 +1,11 @@
 #Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 ### Fixed
-- Check-Windows-disk.rb added CSV formatting for WMIC
+- Check-Windows-disk.rb added CSV formatting for WMIC.
 
 ## [0.0.11] - 2016-07-15
 ### Added
@@ -19,13 +19,15 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Windows RAM Metric written using only Powershell under bin/powershell.
 - Windows Network Metric written using only Powershell under bin/powershell.
 - Windows Uptime Metric written using only Powershell under bin/powershell.
+
 ### Changed
 - Corrected grammer issues and clarified comments in all existing Ruby-based Windows Check and Metric files.
 - Moved existing Ruby-based Windows Check and Metric files to bin/ruby.
 - Changed file naming to the singular instead of the difference in plurality between 'check' and 'metrics'.
-- Updated README.md
+- Updated README.md.
+
 ### Fixed
-- Fixed numerous capitalization issues in CHANGELOG.md file.
+- Fixed numerous grammar issues in CHANGELOG.md file.
 
 ## [0.0.10] - 2016-02-16
 ### Fixed
