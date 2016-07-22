@@ -39,11 +39,11 @@ $Memory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemo
 $Value = [System.Math]::Round(((($Memory.TotalVisibleMemorySize-$Memory.FreePhysicalMemory)/$Memory.TotalVisibleMemorySize)*100),2)
 
 If ($Value -gt $CRITICAL) {
-  Write-Host CheckWindowsRAMLoad CRITICAL: CPU at $Value%.
+  Write-Host CheckWindowsRAMLoad CRITICAL: RAM at $Value%.
   Exit 2 }
 
 If ($Value -gt $WARNING) {
-  Write-Host CheckWindowsRAMLoad WARNING: CPU at $Value%.
+  Write-Host CheckWindowsRAMLoad WARNING: RAM at $Value%.
   Exit 1 }
 
 Else {
