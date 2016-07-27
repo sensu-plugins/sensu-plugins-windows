@@ -10,6 +10,7 @@
 These files provide basic Checks and Metrics for a Windows system.
 
 ## Files
+### Ruby
  * bin/check-windows-cpu-load.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-process.rb
@@ -21,6 +22,7 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/metric-windows-ram-usage.rb
  * bin/metric-windows-uptime.rb
 
+### Powershell
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
  * bin/powershell/check-windows-process.ps1
@@ -33,9 +35,7 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/metric-windows-uptime.ps1
 
 ## Usage
-Put these files on a Sensu Client.  Typically under C:\etc\sensu\plugins.
+Put either the Ruby or Powershell files on a Sensu Client.  Typically under C:\etc\sensu\plugins.
 
 ## Installation
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
-
-## Notes
