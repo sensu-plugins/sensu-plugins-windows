@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
+### Added
+- check-windows-processor-queue-length
+
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.
 
