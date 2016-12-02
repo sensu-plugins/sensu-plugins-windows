@@ -14,11 +14,13 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/check-windows-cpu-load.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-process.rb
+ * bin/check-windows-processor-queue-length.rb
  * bin/check-windows-ram.rb
  * bin/check-windows-service.rb
  * bin/metric-windows-cpu-load.rb
  * bin/metric-windows-disk-usage.rb
  * bin/metric-windows-network.rb
+ * bin/metric-windows-processor-queue-length.rb
  * bin/metric-windows-ram-usage.rb
  * bin/metric-windows-uptime.rb
 
@@ -26,11 +28,13 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
  * bin/powershell/check-windows-process.ps1
+ * bin/powershell/check-windows-processor-queue-length.ps1
  * bin/powershell/check-windows-ram.ps1
  * bin/powershell/check-windows-service.ps1
  * bin/powershell/metric-windows-cpu-load.ps1
  * bin/powershell/metric-windows-disk-usage.ps1
  * bin/powershell/metric-windows-network.ps1
+ * bin/powershell/metric-windows-processor-queue-length.ps1
  * bin/powershell/metric-windows-ram-usage.ps1
  * bin/powershell/metric-windows-uptime.ps1
 
