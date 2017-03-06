@@ -40,6 +40,10 @@ class CheckDisk < Sensu::Plugin::Check::CLI
          short: '-i MNT',
          proc: proc { |a| a.split(',') }
 
+  option :ignorelabel,
+         short: '-I LABEL_REGEXP',
+         proc: proc { |a| Regexp.new(a) }
+
   option :warn,
          short: '-w PERCENT',
          proc: proc(&:to_i),
@@ -68,6 +72,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
         next if config[:fstype] && !config[:fstype].include?(type)
         next if config[:ignoretype] && config[:ignoretype].include?(type)
         next if config[:ignoremnt] && config[:ignoremnt].include?(mnt)
+        next if config[:ignorelabel] && config[:ignorelabel].match(label)
       rescue
         unknown "malformed line from df: #{line}"
       end
