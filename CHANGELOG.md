@@ -7,6 +7,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - check-windows-processor-queue-length
 
+### Changed
+- Adding support for ignoring disk checks by disk label (via a regular expression)
+
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.
 
