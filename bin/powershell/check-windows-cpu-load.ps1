@@ -34,7 +34,7 @@ Param(
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Value = (Get-WmiObject CIM_Processor).LoadPercentage
+$Value = [System.Math]::Round((Get-Counter '\processor(_total)\% processor time' -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
