@@ -22,14 +22,14 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-$ThisProcess = Get-Process -Id $pid
-$ThisProcess.PriorityClass = "BelowNormal"
-
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
    [string]$ProcessName
 )
+
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
 $Exists = Get-Process $ProcessName -ErrorAction SilentlyContinue
 
