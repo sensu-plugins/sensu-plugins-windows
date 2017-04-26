@@ -45,7 +45,7 @@ class CpuMetric < Sensu::Plugin::Metric::CLI::Graphite
     values = acquire_cpu_load
     metrics = {
       cpu: {
-        loadavgsec: values[0]
+        queuelength: values[0]
       }
     }
     metrics.each do |parent, children|

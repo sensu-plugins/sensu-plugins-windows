@@ -4,15 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
-### Added
-- check-windows-processor-queue-length
-
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.
 
-## [0.0.11] - 2016-07-15
 ### Added
-- Windows CPU Load Check written using only Powershell under bin/powershell.
+- Windows CPU Load Check written using only Powershell under bin/powershell. (@ajeba99)
 - Windows Disk Usage Check written using only Powershell under bin/powershell.
 - Windows Process Check written using only Powershell under bin/powershell.
 - Windows RAM Check written using only Powershell under bin/powershell.
@@ -22,6 +18,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Windows RAM Metric written using only Powershell under bin/powershell.
 - Windows Network Metric written using only Powershell under bin/powershell.
 - Windows Uptime Metric written using only Powershell under bin/powershell.
+- Add support for ignoring disk checks by disk label (via a regular expression) (@manul7)
+- Add check-windows-processor-queue-length (@andyroyle)
 
 ### Changed
 - Corrected grammer issues and clarified comments in all existing Ruby-based Windows Check and Metric files.
