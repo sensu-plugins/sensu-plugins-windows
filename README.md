@@ -41,5 +41,20 @@ These files provide basic Checks and Metrics for a Windows system.
 ## Usage
 Put either the Ruby or Powershell files on a Sensu Client.  Typically under C:\etc\sensu\plugins.
 
+You should also include the full escaped path to the ruby interpreter in the check's command configuration.  See example below.
+
+```json
+{
+  "checks": {
+    "cpu_percent": {
+      "command": "c:\\opt\\sensu\\embedded\\bin\\ruby C:\\opt\\sensu\\etc\\plugins\\metric-windows-cpu-load.rb",
+      "interval": 30,
+      "type": "metric",
+      "handler": "win_metrics",
+      "subscribers": ["win_metrics"]
+    }
+}
+```
+
 ## Installation
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
