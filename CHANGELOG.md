@@ -20,6 +20,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Windows Uptime Metric written using only Powershell under bin/powershell.
 - Add support for ignoring disk checks by disk label (via a regular expression) (@manul7)
 - Add check-windows-processor-queue-length (@andyroyle)
+- Add testing on Ruby 2.3 and 2.4.1 (@eheydrick)
 
 ### Changed
 - Corrected grammer issues and clarified comments in all existing Ruby-based Windows Check and Metric files.
@@ -29,6 +30,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Fixed
 - Fixed numerous grammar issues in CHANGELOG.md file.
+
+### Removed
+- Support for Ruby < 2 (@eheydrick)
 
 ## [0.0.10] - 2016-02-16
 ### Fixed
