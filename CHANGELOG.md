@@ -10,6 +10,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Windows CPU Load Check written using only Powershell under bin/powershell. (@ajeba99)
 - Windows Disk Usage Check written using only Powershell under bin/powershell.
+- Windows Disk Writeable written using only Powershell under bin/powershell (@shoekstra)
 - Windows Process Check written using only Powershell under bin/powershell.
 - Windows RAM Check written using only Powershell under bin/powershell.
 - Windows Service Check written using only Powershell under bin/powershell.
