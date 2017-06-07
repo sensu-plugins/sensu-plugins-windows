@@ -31,6 +31,7 @@ These files provide basic Checks and Metrics for a Windows system.
 
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
+ * bin/powershell/check-windows-disk-writeable.ps1
  * bin/powershell/check-windows-process.ps1
  * bin/powershell/check-windows-processor-queue-length.ps1
  * bin/powershell/check-windows-ram.ps1
