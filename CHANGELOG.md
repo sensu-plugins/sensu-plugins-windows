@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
+## [0.1.0] 2017-06-2017
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.
 
@@ -84,8 +85,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...HEAD
-[0.0.11]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...v0.0.11
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...0.1.0
 [0.0.10]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.0.8..v0.0.9
 [0.0.8]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.0.7...0.0.8
