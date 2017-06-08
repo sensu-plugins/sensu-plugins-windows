@@ -7,10 +7,13 @@
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-windows.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-windows)
 
 ## Functionality
+
 These files provide basic Checks and Metrics for a Windows system.
 
 ## Files
+
 ### Ruby
+
  * bin/check-windows-cpu-load.rb
  * bin/check-windows-disk.rb
  * bin/check-windows-process.rb
@@ -25,8 +28,10 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/metric-windows-uptime.rb
 
 ### Powershell
+
  * bin/powershell/check-windows-cpu-load.ps1
  * bin/powershell/check-windows-disk.ps1
+ * bin/powershell/check-windows-disk-writeable.ps1
  * bin/powershell/check-windows-process.ps1
  * bin/powershell/check-windows-processor-queue-length.ps1
  * bin/powershell/check-windows-ram.ps1
@@ -39,9 +44,10 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/metric-windows-uptime.ps1
 
 ## Usage
-Put either the Ruby or Powershell files on a Sensu Client.  Typically under C:\etc\sensu\plugins.
 
-You should also include the full escaped path to the ruby interpreter in the check's command configuration.  See example below.
+Put either the Ruby or Powershell files on a Sensu Client, typically under `C:\etc\sensu\plugins`.
+
+You should also include the full escaped path to the ruby interpreter in the check's command configuration, see example below:
 
 ```json
 {
@@ -53,8 +59,10 @@ You should also include the full escaped path to the ruby interpreter in the che
       "handler": "win_metrics",
       "subscribers": ["win_metrics"]
     }
+  }
 }
 ```
 
 ## Installation
+
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
