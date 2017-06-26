@@ -1,9 +1,14 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+### [1.0.0] 2017-06-26
+### Fixed
+- fix PR template with correct spelling of Compatibility. The big reason to make this a 1.x is to allow an upcoming breaking change and protecting users from it.
+
 ## [0.1.0] 2017-06-2017
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.

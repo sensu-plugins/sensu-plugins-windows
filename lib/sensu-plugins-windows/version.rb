@@ -1,7 +1,7 @@
 module SensuPluginsWindows
   module Version
-    MAJOR = 0
-    MINOR = 1
+    MAJOR = 1
+    MINOR = 0
     PATCH = 0
 
     VER_STRING = [MAJOR, MINOR, PATCH].compact.join('.')
