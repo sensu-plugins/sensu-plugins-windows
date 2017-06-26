@@ -28,6 +28,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Corrected grammer issues and clarified comments in all existing Ruby-based Windows Check and Metric files.
 - Moved existing Ruby-based Windows Check and Metric files to bin/ruby.
 - Changed file naming to the singular instead of the difference in plurality between 'check' and 'metrics'.
+- Dependency on Powersehell version 3.0 or above for powershell checks.
 - Updated README.md.
 
 ### Fixed

@@ -65,7 +65,7 @@ You should also include the full escaped path to the ruby interpreter in the che
 ```
 
 ## Dependencies
- * Powershell checks require Powershell 3.0 or higher.
+ * Powershell checks require Powershell version 3.0 or higher.
 
 ## Installation
 
