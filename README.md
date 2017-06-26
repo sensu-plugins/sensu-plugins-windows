@@ -44,7 +44,6 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/metric-windows-uptime.ps1
 
 ## Usage
-Put either the Ruby or Powershell files on a Sensu Client.  Typically under C:\etc\sensu\plugins. 
 
 Put either the Ruby or Powershell files on a Sensu Client, typically under `C:\etc\sensu\plugins`.
 
