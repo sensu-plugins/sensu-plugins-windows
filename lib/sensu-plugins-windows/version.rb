@@ -1,6 +1,6 @@
 module SensuPluginsWindows
   module Version
-    MAJOR = 1
+    MAJOR = 2
     MINOR = 0
     PATCH = 0
 
