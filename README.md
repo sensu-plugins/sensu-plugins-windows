@@ -63,6 +63,9 @@ You should also include the full escaped path to the ruby interpreter in the che
 }
 ```
 
+## Dependencies
+ * Powershell checks require Powershell version 3.0 or higher.
+
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)

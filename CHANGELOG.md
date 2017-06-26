@@ -7,6 +7,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Fixed
 - missing diffs on 1.0 release
 
+### Breaking Change
+- Dependency on Powersehell version 3.0 or above for powershell checks.
+
+### Changed
+- Updated README.md.
+
 ### [1.0.0] 2017-06-26
 ### Fixed
 - fix PR template with correct spelling of Compatibility. The big reason to make this a 1.x is to allow an upcoming breaking change and protecting users from it.

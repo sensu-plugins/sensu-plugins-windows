@@ -24,7 +24,7 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 
-#Requires -Version 2.0
+#Requires -Version 3.0
 
 [CmdletBinding()]
 Param(
