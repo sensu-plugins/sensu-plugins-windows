@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Added
+- `powershell/check-windows-pagefile.ps1`: which basically allows checking how much pagefile (aka swap) is in use. (@hulkk)
+
 ## [2.0.0] - 2017-06-27
 ### Fixed
 - missing diffs on 1.0 release (@majormoses)
