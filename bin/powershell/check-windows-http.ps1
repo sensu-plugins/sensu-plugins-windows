@@ -11,7 +11,7 @@
 #   Windows
 #
 # DEPENDENCIES:
-#   Powershell
+#   Powershell 3.0 or above
 #
 # USAGE:
 #   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-http.ps1 https://google.com
@@ -23,7 +23,9 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 
-﻿[CmdletBinding()]
+#Requires -Version 3.0
+
+[CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
    [string]$CheckAddress

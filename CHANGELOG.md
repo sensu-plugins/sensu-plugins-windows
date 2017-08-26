@@ -1,15 +1,32 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [2.0.0] - 2017-06-27
+### Fixed
+- missing diffs on 1.0 release (@majormoses)
+
+### Breaking Change
+- Dependency on Powersehell version 3.0 or above for powershell checks. (@simonsteur)
+
+### Changed
+- Updated `README.md` with new requirements. (@simonsteur)
+
+### [1.0.0] 2017-06-26
+### Fixed
+- fix PR template with correct spelling of Compatibility. The big reason to make this a 1.x is to allow an upcoming breaking change and protecting users from it.
+
+## [0.1.0] 2017-06-2017
 ### Fixed
 - Check-Windows-disk.rb added CSV formatting for WMIC.
 
 ### Added
 - Windows CPU Load Check written using only Powershell under bin/powershell. (@ajeba99)
 - Windows Disk Usage Check written using only Powershell under bin/powershell.
+- Windows Disk Writeable written using only Powershell under bin/powershell (@shoekstra)
 - Windows Process Check written using only Powershell under bin/powershell.
 - Windows RAM Check written using only Powershell under bin/powershell.
 - Windows Service Check written using only Powershell under bin/powershell.
@@ -20,6 +37,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Windows Uptime Metric written using only Powershell under bin/powershell.
 - Add support for ignoring disk checks by disk label (via a regular expression) (@manul7)
 - Add check-windows-processor-queue-length (@andyroyle)
+- Add testing on Ruby 2.3 and 2.4.1 (@eheydrick)
 
 ### Changed
 - Corrected grammer issues and clarified comments in all existing Ruby-based Windows Check and Metric files.
@@ -29,6 +47,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Fixed
 - Fixed numerous grammar issues in CHANGELOG.md file.
+
+### Removed
+- Support for Ruby < 2 (@eheydrick)
 
 ## [0.0.10] - 2016-02-16
 ### Fixed
@@ -79,8 +100,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...HEAD
-[0.0.11]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...v0.0.11
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/1.0.0...2.0.0
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.1.0...1.0.0
+[0.1.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...0.1.0
 [0.0.10]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.0.8..v0.0.9
 [0.0.8]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.0.7...0.0.8
