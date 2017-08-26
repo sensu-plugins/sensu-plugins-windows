@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
-
+### [2.1.0] - 2017-08-26
 ### Added
 - `powershell/check-windows-pagefile.ps1`: which basically allows checking how much pagefile (aka swap) is in use. (@hulkk)
 
@@ -104,6 +104,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Initial release
 
 [Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.0.0...HEAD
+[2.1.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/v0.0.10...0.1.0
