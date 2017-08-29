@@ -35,7 +35,7 @@ Param(
 )
 
 
-. .\perfhelper.ps1
+. (Join-Path $PSScriptRoot perfhelper.ps1)
 
 
 $ThisProcess = Get-Process -Id $pid

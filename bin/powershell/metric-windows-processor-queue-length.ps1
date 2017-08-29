@@ -25,11 +25,10 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Path = hostname
-$Path = $Path.ToLower()
+$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 
 $Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
 
 $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
-Write-Host "$Path.system.processor_queue_length $Value $Time"
+Write-Host "$Path.cpu.queue_length $Value $Time"

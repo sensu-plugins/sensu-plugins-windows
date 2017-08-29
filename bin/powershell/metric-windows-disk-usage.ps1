@@ -35,11 +35,11 @@ foreach ($ObjDisk in $AllDisks)
   $AvailableSpace = [System.Math]::Round(($ObjDisk.Freespace/1MB),2)
   $UsedPercentage = [System.Math]::Round(((($ObjDisk.Size-$ObjDisk.Freespace)/$ObjDisk.Size)*100),2)
 
-  $Path = (hostname).ToLower()
+  $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 
   $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
-  Write-Host "$Path.system.Disk.$DeviceId.UsedMB $UsedSpace $Time"
-  Write-Host "$Path.system.Disk.$DeviceId.FreeMB $AvailableSpace $Time"
-  Write-Host "$Path.system.Disk.$DeviceId.UsedPercentage $UsedPercentage $Time"
+  Write-Host "$Path.disk.usage.$DeviceId.UsedMB $UsedSpace $Time"
+  Write-Host "$Path.disk.usage.$DeviceId.FreeMB $AvailableSpace $Time"
+  Write-Host "$Path.disk.usage.$DeviceId.UsedPercentage $UsedPercentage $Time"
 }

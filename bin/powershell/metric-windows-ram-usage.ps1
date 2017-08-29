@@ -28,8 +28,9 @@ $ThisProcess.PriorityClass = "BelowNormal"
 $FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
 $TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
 
-$Path = (hostname).ToLower()
+$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)
 $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
-Write-host "$Path.system.ram.RamUsagePercent $Value $Time"
+Write-host "$Path.memory.percent.used $Value $Time"

@@ -25,7 +25,10 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-foreach ($ObjNet in (Get-Counter -Counter "\Network Interface(*)\*").CounterSamples) 
+$perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
+
+foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) 
 { 
   $Path = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
   $Value = [System.Math]::Round(($ObjNet.CookedValue),0)

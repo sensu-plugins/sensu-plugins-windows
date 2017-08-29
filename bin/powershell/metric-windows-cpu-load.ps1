@@ -25,11 +25,10 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Path = hostname
-$Path = $Path.ToLower()
+$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 
 $Value = (Get-WmiObject CIM_Processor).LoadPercentage
 
 $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
-Write-Host "$Path.system.processor_total.%_processor_time $Value $Time"
+Write-Host "$Path.cpu.total_time_percent $Value $Time"
