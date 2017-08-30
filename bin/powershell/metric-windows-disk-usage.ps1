@@ -25,6 +25,8 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $AllDisks = Get-WMIObject Win32_LogicalDisk -Filter "DriveType = 3" | ? { $_.DeviceID -notmatch "[ab]:"}
 
 foreach ($ObjDisk in $AllDisks) 
@@ -37,7 +39,7 @@ foreach ($ObjDisk in $AllDisks)
 
   $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 
-  $Time = [int][double]::Parse((Get-Date -UFormat %s))
+  $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
   Write-Host "$Path.disk.usage.$DeviceId.UsedMB $UsedSpace $Time"
   Write-Host "$Path.disk.usage.$DeviceId.FreeMB $AvailableSpace $Time"

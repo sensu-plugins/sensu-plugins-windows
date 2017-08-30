@@ -25,12 +25,13 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
 $TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
 
 $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-host "$Path.memory.percent.used $Value $Time"

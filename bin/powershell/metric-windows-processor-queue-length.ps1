@@ -25,10 +25,10 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
 $Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
-
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-Host "$Path.cpu.queue_length $Value $Time"

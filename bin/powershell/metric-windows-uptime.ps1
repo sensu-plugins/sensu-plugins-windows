@@ -25,10 +25,12 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $Counter = ((Get-Counter "\System\System Up Time").CounterSamples)
 
 $Path = ($Counter.Path).Trim("\\") -replace " ","_" -replace "\\","." -replace "[\{\}]","" -replace "[\[\]]",""
 $Value = [System.Math]::Truncate($Counter.CookedValue)
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-Host "$Path $Value $Time"

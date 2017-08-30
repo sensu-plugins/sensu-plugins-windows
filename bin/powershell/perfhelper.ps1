@@ -64,3 +64,11 @@ Function Get-PerformanceCounterLocalName
     Throw 'Get-PerformanceCounterLocalName : Unable to retrieve localized name. Check computer name and performance counter ID.'
   }
 }
+
+Function DateTimeToUnixTimestamp([datetime]$DateTime)
+{
+    $utcDate = $DateTime.ToUniversalTime()
+    # Convert to a Unix time without any rounding
+    [uint64]$UnixTime = [double]::Parse((Get-Date -Date $utcDate -UFormat %s))
+    return [uint64]$UnixTime
+}

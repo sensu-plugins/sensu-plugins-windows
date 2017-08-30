@@ -34,9 +34,7 @@ Param(
    [int]$CRITICAL
 )
 
-
 . (Join-Path $PSScriptRoot perfhelper.ps1)
-
 
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"

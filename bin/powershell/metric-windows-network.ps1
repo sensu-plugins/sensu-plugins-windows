@@ -25,6 +25,8 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 
@@ -32,7 +34,7 @@ foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").Counte
 { 
   $Path = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
   $Value = [System.Math]::Round(($ObjNet.CookedValue),0)
-  $Time = [int][double]::Parse((Get-Date -UFormat %s))
+  $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
   Write-Host "$Path $Value $Time"
 }
