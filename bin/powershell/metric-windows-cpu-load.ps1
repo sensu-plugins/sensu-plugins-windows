@@ -27,8 +27,19 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
+
+$perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
+$perfCounterID = Get-PerformanceCounterByID -Name '% Processor Time'
+
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
+$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
+
+$Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+
 $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-$Value = (Get-WmiObject CIM_Processor).LoadPercentage
+
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-Host "$Path.cpu.total_time_percent $Value $Time"

@@ -11,26 +11,33 @@ function Get-PerformanceCounterByID
         [Parameter(Mandatory=$true)]
         $Name
     )
+
+    $hashfile = (Join-Path $PSScriptRoot perfhash.hsh)
+
+    if ([System.IO.File]::Exists($hashfile)) {
+        
+        $perfHash = Import-Clixml -Path $hashfile
+    }
  
-    if ($script:perfHash -eq $null)
+    if ($perfHash -eq $null)
     {
-        Write-Progress -Activity 'Retrieving PerfIDs' -Status 'Working'
  
         $key = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Perflib\009'
         $counters = (Get-ItemProperty -Path $key -Name Counter).Counter
-        $script:perfHash = @{}
+        $perfHash = @{}
         $all = $counters.Count
  
         for($i = 0; $i -lt $all; $i+=2)
         {
-           Write-Progress -Activity 'Retrieving PerfIDs' -Status 'Working' -PercentComplete ($i*100/$all)
-           $script:perfHash.$($counters[$i+1]) = $counters[$i]
+           $perfHash.$($counters[$i+1]) = $counters[$i]
         }
+
+        Export-Clixml -InputObject $perfHash -Path $hashfile
+
     }
  
-   $script:perfHash.$Name
+   $perfHash.$Name
 }
-
 
 $signature = @'
 [DllImport("pdh.dll", SetLastError = true, CharSet = CharSet.Unicode)]
