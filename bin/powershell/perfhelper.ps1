@@ -1,7 +1,32 @@
-##################################################
+#
+#   perfhelper.ps1
+#
+# DESCRIPTION:
+#   This is file provides useful functions for powershell based metric checks
+#
+# OUTPUT:
+#   metric data
+#
+# PLATFORMS:
+#   Windows
+#
+# DEPENDENCIES:
+#   Powershell
+#
+# USAGE:
+#   To use these functions dot source this file. 
+#	Example: . (Join-Path $PSScriptRoot perfhelper.ps1)
+#
+# NOTES:
+#
+# LICENSE:
+#   Copyright 2016 sensu-plugins
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
+#
+#
 # Taken from: http://www.powershellmagazine.com/2013/07/19/querying-performance-counters-from-powershell/
 # THX!
-##################################################
+#
 
 
 function Get-PerformanceCounterByID
