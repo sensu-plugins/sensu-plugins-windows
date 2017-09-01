@@ -42,7 +42,12 @@ $perfCounterID = Get-PerformanceCounterByID -Name 'Context Switches/sec'
 $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
 $count_context = [System.Math]::Round((Get-Counter "\$localizedCategoryName\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
 
-$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+# Select here whether the hostname is to be printed with or without domain
+# Default: Without Domain
+# With Domain:
+# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+$Path = ($env:computername).ToLower() 
 
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

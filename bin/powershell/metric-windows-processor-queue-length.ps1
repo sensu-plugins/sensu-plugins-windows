@@ -27,7 +27,13 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
-$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+# Select here whether the hostname is to be printed with or without domain
+# Default: Without Domain
+# With Domain:
+# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+$Path = ($env:computername).ToLower() 
+
 $Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

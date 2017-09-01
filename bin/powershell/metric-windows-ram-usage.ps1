@@ -31,7 +31,14 @@ $FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysical
 $TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
 $UsedMemory = $TotalMemory-$FreeMemory
 
-$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+# Select here whether the hostname is to be printed with or without domain
+# Default: Without Domain
+# With Domain:
+# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+$Path = ($env:computername).ToLower() 
+
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

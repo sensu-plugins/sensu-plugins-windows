@@ -51,7 +51,13 @@ $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
 $percent_interrupt = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
 
 
-$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+# Select here whether the hostname is to be printed with or without domain
+# Select here whether the hostname is to be printed with or without domain
+# Default: Without Domain
+# With Domain:
+# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+$Path = ($env:computername).ToLower() 
 
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

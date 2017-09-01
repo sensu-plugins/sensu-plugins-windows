@@ -37,7 +37,12 @@ foreach ($ObjDisk in $AllDisks)
   $AvailableSpace = [System.Math]::Round(($ObjDisk.Freespace/1MB),2)
   $UsedPercentage = [System.Math]::Round(((($ObjDisk.Size-$ObjDisk.Freespace)/$ObjDisk.Size)*100),2)
 
-  $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+  # Select here whether the hostname is to be printed with or without domain
+  # Default: Without Domain
+  # With Domain:
+  # $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+
+  $Path = ($env:computername).ToLower() 
 
   $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
