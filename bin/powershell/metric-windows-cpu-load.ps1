@@ -1,20 +1,20 @@
 #
-#   check-windows-cpu-load.ps1
+#   metric-windows-cpu-load.ps1
 #
 # DESCRIPTION:
-#   This plugin collects the CPU Usage and compares against the WARNING and CRITICAL thresholds.
+#   This plugin collects and outputs the CPU Usage in a Graphite acceptable format.
 #
 # OUTPUT:
-#   plain text
+#   metric data
 #
 # PLATFORMS:
 #   Windows
 #
 # DEPENDENCIES:
-#   Powershell 3.0 or above
+#   Powershell
 #
 # USAGE:
-#   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-cpu-load.ps1 90 95
+#   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\metric-windows-cpu-load.ps1
 #
 # NOTES:
 #
