@@ -9,12 +9,20 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
 
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else{
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID

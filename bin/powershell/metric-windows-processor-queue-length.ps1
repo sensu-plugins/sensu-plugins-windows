@@ -22,17 +22,20 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
-# Select here whether the hostname is to be printed with or without domain
-# Default: Without Domain
-# With Domain:
-# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
-$Path = ($env:computername).ToLower() 
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else{
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
 
 $Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)

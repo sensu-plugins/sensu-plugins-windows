@@ -22,13 +22,21 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
-$ThisProcess = Get-Process -Id $pid
-$ThisProcess.PriorityClass = "BelowNormal"
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else{
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
@@ -41,13 +49,6 @@ $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 $perfCounterID = Get-PerformanceCounterByID -Name 'Context Switches/sec'
 $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
 $count_context = [System.Math]::Round((Get-Counter "\$localizedCategoryName\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
-
-# Select here whether the hostname is to be printed with or without domain
-# Default: Without Domain
-# With Domain:
-# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
-$Path = ($env:computername).ToLower() 
 
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

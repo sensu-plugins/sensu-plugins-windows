@@ -27,10 +27,10 @@ param(
     [string[]]$Interfaces
     )
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
-
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
+
+. (Join-Path $PSScriptRoot perfhelper.ps1)
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID

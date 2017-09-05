@@ -22,10 +22,21 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
+
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else{
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
 
 $AllDisks = Get-WMIObject Win32_LogicalDisk -Filter "DriveType = 3" | ? { $_.DeviceID -notmatch "[ab]:"}
 
@@ -36,13 +47,6 @@ foreach ($ObjDisk in $AllDisks)
   $UsedSpace = [System.Math]::Round((($ObjDisk.Size-$ObjDisk.Freespace)/1MB),2)
   $AvailableSpace = [System.Math]::Round(($ObjDisk.Freespace/1MB),2)
   $UsedPercentage = [System.Math]::Round(((($ObjDisk.Size-$ObjDisk.Freespace)/$ObjDisk.Size)*100),2)
-
-  # Select here whether the hostname is to be printed with or without domain
-  # Default: Without Domain
-  # With Domain:
-  # $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
-  $Path = ($env:computername).ToLower() 
 
   $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

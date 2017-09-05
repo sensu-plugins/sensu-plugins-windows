@@ -22,22 +22,24 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else{
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
+
 $FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
 $TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
 $UsedMemory = $TotalMemory-$FreeMemory
-
-
-# Select here whether the hostname is to be printed with or without domain
-# Default: Without Domain
-# With Domain:
-# $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
-
-$Path = ($env:computername).ToLower() 
 
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
