@@ -27,7 +27,13 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
-$Counter = ((Get-Counter "\System\System Up Time").CounterSamples)
+$perfCategoryID = Get-PerformanceCounterByID -Name 'System'
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
+
+$perfCounterID = Get-PerformanceCounterByID -Name 'System Up Time'
+$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
+
+$Counter = ((Get-Counter "\$localizedCategoryName\$localizedCounterName").CounterSamples)
 
 $Path = ($Counter.Path).Trim("\\") -replace " ","_" -replace "\\","." -replace "[\{\}]","" -replace "[\[\]]",""
 $Value = [System.Math]::Truncate($Counter.CookedValue)
