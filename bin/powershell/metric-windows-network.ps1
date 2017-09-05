@@ -22,19 +22,36 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-$ThisProcess = Get-Process -Id $pid
-$ThisProcess.PriorityClass = "BelowNormal"
+
+param(
+    [string[]]$Interfaces
+    )
 
 . (Join-Path $PSScriptRoot perfhelper.ps1)
+
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 
 foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) 
 { 
-  $Path = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
-  $Value = [System.Math]::Round(($ObjNet.CookedValue),0)
-  $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
+  
+  if ($Interfaces.Contains($ObjNet.InstanceName)) {
 
-  Write-Host "$Path $Value $Time"
+     $Path = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
+     $Path = $Path.Replace("/s","_per_second")
+     $Path = $Path.Replace(":","")
+     $Path = $Path.Replace(",","")
+     $Path = $Path.Replace("ä","ae")
+     $Path = $Path.Replace("ö","oe")
+     $Path = $Path.Replace("ü","ue")
+     $Value = [System.Math]::Round(($ObjNet.CookedValue),0)
+     $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
+
+     Write-Host "$Path $Value $Time"
+
+   }
+
 }
