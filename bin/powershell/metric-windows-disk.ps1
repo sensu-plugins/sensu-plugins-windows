@@ -59,7 +59,7 @@ foreach ($ObjDisk in (Get-Counter -Counter "\$localizedCategoryName(*)\*").Count
             $disk = $disk.Remove(0,1)
             $disk = $disk.Replace(":","")
             $disk = $disk.Trim()
-            $instances.Add($ObjDisk.InstanceName,$disk)
+            $instances.Add($ObjDisk.InstanceName,$disk.toUpper())
         }
         
    }
