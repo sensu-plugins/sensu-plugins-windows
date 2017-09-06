@@ -35,6 +35,11 @@ $ThisProcess.PriorityClass = "BelowNormal"
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 
+for($i = 0; $i -lt $Interfaces.Count; $i+=1) {
+    $tmp = $Interfaces[$i]
+    $Interfaces[$i] = $tmp.Replace("_"," ")
+}
+
 foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) 
 { 
   
