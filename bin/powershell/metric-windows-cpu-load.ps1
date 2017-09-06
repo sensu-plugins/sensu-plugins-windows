@@ -1,4 +1,18 @@
 #
+#   metric-windows-cpu-load.ps1
+#
+# DESCRIPTION:
+#   This plugin collects and outputs the CPU Usage in a Graphite acceptable format.
+#
+# OUTPUT:
+#   metric data
+#
+# PLATFORMS:
+#   Windows
+#
+# DEPENDENCIES:
+#   Powershell
+#
 # USAGE:
 #   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\metric-windows-cpu-load.ps1
 #
