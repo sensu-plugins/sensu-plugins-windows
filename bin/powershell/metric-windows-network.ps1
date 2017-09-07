@@ -35,7 +35,7 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 if ($UseFullyQualifiedHostname -eq $false) {
     $Hostname = ($env:computername).ToLower()
-}else{
+}else {
     $Hostname = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
@@ -54,8 +54,7 @@ foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").Counte
 
      $Measurement = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
 
-	 $Measurement = $Measurement.Remove(0,$Measurement.IndexOf("."))
-     
+	 $Measurement = $Measurement.Remove(0,$Measurement.IndexOf("."))   
 	 $Path = $Hostname+$Measurement
 
      $Path = $Path.Replace("/s","_per_second")

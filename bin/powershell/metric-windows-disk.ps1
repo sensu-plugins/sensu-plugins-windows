@@ -27,6 +27,9 @@ param(
     [switch]$UseFullyQualifiedHostname
     )
 
+$counters =  New-Object System.Collections.ArrayList
+$instances =  @{}
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -34,15 +37,12 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 if ($UseFullyQualifiedHostname -eq $false) {
     $Path = ($env:computername).ToLower()
-}else{
+}else {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'PhysicalDisk'
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
-
-$counters =  New-Object System.Collections.ArrayList
-$instances =  @{}
 
 [void]$counters.Add('Avg. Disk Bytes/Read')
 [void]$counters.Add('Avg. Disk Bytes/Write')
@@ -52,7 +52,7 @@ $instances =  @{}
 
 foreach ($ObjDisk in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) {
 
-   if ($instances.ContainsKey($ObjDisk.InstanceName) -eq $false){
+   if ($instances.ContainsKey($ObjDisk.InstanceName) -eq $false) {
         
         if ($ObjDisk.InstanceName.ToLower() -ne '_total') {
             $disk = $ObjDisk.InstanceName

@@ -34,7 +34,7 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 if ($UseFullyQualifiedHostname -eq $false) {
     $Path = ($env:computername).ToLower()
-}else{
+}else {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
