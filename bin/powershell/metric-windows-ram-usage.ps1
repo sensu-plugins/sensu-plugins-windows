@@ -22,14 +22,29 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else {
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
+
 $FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
 $TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
+$UsedMemory = $TotalMemory-$FreeMemory
 
-$Path = (hostname).ToLower()
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
-Write-host "$Path.system.ram.RamUsagePercent $Value $Time"
+Write-host "$Path.memory.free $FreeMemory $Time"
+Write-host "$Path.memory.total $TotalMemory $Time"
+Write-host "$Path.memory.used $UsedMemory $Time"
+Write-host "$Path.memory.percent.used $Value $Time"

@@ -22,14 +22,22 @@
 #   Copyright 2016 sensu-plugins
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
+param(
+    [switch]$UseFullyQualifiedHostname
+    )
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Path = hostname
-$Path = $Path.ToLower()
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
+if ($UseFullyQualifiedHostname -eq $false) {
+    $Path = ($env:computername).ToLower()
+}else {
+    $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
+}
 
 $Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
-
-Write-Host "$Path.system.processor_queue_length $Value $Time"
+Write-Host "$Path.cpu.queue_length $Value $Time"

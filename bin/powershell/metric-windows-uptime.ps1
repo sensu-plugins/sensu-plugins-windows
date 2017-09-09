@@ -25,10 +25,18 @@
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Counter = ((Get-Counter "\System\System Up Time").CounterSamples)
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
+$perfCategoryID = Get-PerformanceCounterByID -Name 'System'
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
+
+$perfCounterID = Get-PerformanceCounterByID -Name 'System Up Time'
+$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
+
+$Counter = ((Get-Counter "\$localizedCategoryName\$localizedCounterName").CounterSamples)
 
 $Path = ($Counter.Path).Trim("\\") -replace " ","_" -replace "\\","." -replace "[\{\}]","" -replace "[\[\]]",""
 $Value = [System.Math]::Truncate($Counter.CookedValue)
-$Time = [int][double]::Parse((Get-Date -UFormat %s))
+$Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-Host "$Path $Value $Time"

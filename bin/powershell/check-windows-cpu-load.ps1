@@ -34,10 +34,18 @@ Param(
    [int]$CRITICAL
 )
 
+. (Join-Path $PSScriptRoot perfhelper.ps1)
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Value = [System.Math]::Round((Get-Counter '\processor(_total)\% processor time' -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+$perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
+$perfCounterID = Get-PerformanceCounterByID -Name '% Processor Time'
+
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
+$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
+
+$Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
@@ -45,8 +53,10 @@ If ($Value -gt $CRITICAL) {
 
 If ($Value -gt $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
-  Exit 1 }
+  Exit 1
+}
 
 Else {
   Write-Host CheckWindowsCpuLoad OK: CPU at $Value%.
-  Exit 0 }
+  Exit 0 
+}
