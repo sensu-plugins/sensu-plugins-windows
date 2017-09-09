@@ -4,6 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+### Fixed
+- added multi language support to all the powershell scripts (@Seji64)
+- powershell/metric-windows-network.ps1: handle interfaces with spaces in their name (@Seji64)
+
+### Added
+- `powershell/perfhelper.ps1`: added standard sensu header (@Seji64)
+- added option to enable fdqn in metric path (@Seji64)
+- `powershell/metric-windows-disk.ps1` new metric script for disk IO stats (@Seji64)
+
+
 ### [2.1.0] - 2017-08-26
 ### Added
 - `powershell/check-windows-pagefile.ps1`: which basically allows checking how much pagefile (aka swap) is in use. (@hulkk)
