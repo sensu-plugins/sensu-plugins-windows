@@ -13,11 +13,13 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Fixed
 - added multi language support to all the powershell scripts (@Seji64)
 - powershell/metric-windows-network.ps1: handle interfaces with spaces in their name (@Seji64)
+- Calculate correct Unix Timestamp (@Seji64)
 
 ### Added
 - `powershell/perfhelper.ps1`: added standard sensu header (@Seji64)
 - added option to enable fdqn in metric path (@Seji64)
 - `powershell/metric-windows-disk.ps1` new metric script for disk IO stats (@Seji64)
+- `powershell/metric-windows-system.ps1` new metric script for system related stats (@Seji64)
 
 
 ### [2.1.0] - 2017-08-26
