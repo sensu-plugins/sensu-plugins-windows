@@ -8,6 +8,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ### Changed
 - update changelog guidelines location (@majormoses)
+### Fixed
+- `check-windows-service.rb`: allow service names to have spaces in them (@bodgit)
 
 ## [2.2.0] - 2017-09-08
 ### Fixed
