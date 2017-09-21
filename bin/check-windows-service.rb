@@ -33,7 +33,7 @@ class CheckWinService < Sensu::Plugin::Check::CLI
          short: '-s SERVICE'
 
   def run
-    temp = system('tasklist /svc|findstr /i ' + config[:service])
+    temp = system('tasklist /svc|findstr /i /c:"' + config[:service] + '"')
     if temp == false
       message config[:service] + ' is not running'
       critical
