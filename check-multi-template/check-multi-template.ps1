@@ -76,6 +76,11 @@ $CheckOptions = @{
     'MessageMissing' = 'The following items are missing:'
     # The message to display if no items are specified
     'MessageNoneSpecified' = 'No items specified.'
+    # Change this to $True if you want to check for items that are missing
+    # from FailedItems
+    'Inverse' = $False
+    # Check if any items are missing
+    'CheckMissing' = $True
     # State of check in the event of missing items 
     # (1 OK 2 WARNING 3 CRITICAL)
     'MissingState' = 2
@@ -488,7 +493,6 @@ Function Invoke-Main {
     # If -Help is passed, show help and exit
     if ($Help) {
         Write-Help
-        Write-Host 'Help!'
     }
 
     # Setup
@@ -508,27 +512,47 @@ Function Invoke-Main {
     if ($FailedItems.Count -eq 0) { $FailedItems = @() }
 
     # Check that all of the items specified are present
-    $MissingItems = Compare-CheckItems -BaseItems $BaseItems `
-                                    -CompareItems $CriticalItemList,$ImportantItemList `
-                                    -Missing
+    if ($CheckOptions.CheckMissing -or 
+        $CheckOptions.Inverse -ne $True) {
+        $MissingItems = Compare-CheckItems -BaseItems $BaseItems `
+                                           -CompareItems $CriticalItemList,
+                                                         $ImportantItemList `
+                                           -Missing
 
-    if ($MissingItems.Count -gt 0) {
-        Add-OutputEntry -State $CheckOptions.MissingState `
-                        -Message $CheckOptions.MessageMissing `
-                        -Items $MissingItems
+        if ($MissingItems.Count -gt 0) {
+            Add-OutputEntry -State $CheckOptions.MissingState `
+                            -Message $CheckOptions.MessageMissing `
+                            -Items $MissingItems
+        }
     }
 
     # ImportantItems
-    $FailedImportantItems = Compare-CheckItems -BaseItems $FailedItems `
-                                            -CompareItems $ImportantItemList
+    if ($CheckOptions.Inverse) {
+        $FailedImportantItems = Compare-CheckItems `
+                                              -BaseItems $FailedItems `
+                                              -CompareItems $ImportantItemList `
+                                              -Missing
+    } else {
+        $FailedImportantItems = Compare-CheckItems `
+                                              -BaseItems $FailedItems `
+                                              -CompareItems $ImportantItemList
+    }
 
     if ($FailedImportantItems.Count -gt 0) {
         Add-OutputEntry -State 1 -Items $FailedImportantItems
     }
 
     # CriticalItems
-    $FailedCriticalItems = Compare-CheckItems -BaseItems $FailedItems `
-                                            -CompareItems $CriticalItemList
+    if ($CheckOptions.Inverse) {
+        $FailedCriticalItems = Compare-CheckItems `
+                                             -BaseItems $FailedItems `
+                                             -CompareItems $CriticalItemList `
+                                             -Missing
+    } else {
+        $FailedCriticalItems = Compare-CheckItems `
+                                             -BaseItems $FailedItems `
+                                             -CompareItems $CriticalItemList
+    }
 
     if ($FailedCriticalItems.Count -gt 0) {
         Add-OutputEntry -State 2 -Items $FailedCriticalItems
@@ -548,7 +572,7 @@ Function Invoke-Main {
 
 #REGION Main
 
-# Run 'Invoke-Mmain' if run directly, but don't if imported.
+# Run 'Invoke-Main' if run directly, but don't if imported.
 # (Python way is best way)
 $Imported = $MyInvocation.InvocationName -eq '.'
 if (!$Imported) { 
