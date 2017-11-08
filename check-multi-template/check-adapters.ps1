@@ -1,19 +1,39 @@
 #
-#  check-adapters-example.ps1
+#  check-adapters.ps1
 #
 # DESCRIPTION:
 #   This plugin checks that the specified network adapters are up.
 #
-#   It accepts the '-CriticalAdapters' and '-ImportantAdapters' parameters to provide
-#   different status level outputs and also checks if the items passed are missing
-#   completely. Please see the '-Help' parameter, under the 'Sensu check token 
-#   substitution' header for more info on some extra parsing features.
+#   It accepts the '-CriticalAdapters' and '-ImportantAdapters' parameters to 
+#   provide different status level outputs and also checks if the items passed 
+#   are missing completely. Please see the '-Help' parameter, under the 'Sensu 
+#   check token substitution' header for more info on some extra parsing 
+#   features.
 #   
-#   It is built atop check-multi-template.ps1 as an example, and can be easily adapted
-#   to check other things.
+#   It is built atop check-multi-template.ps1 as an example, and can be easily
+#   adapted to check other things.
 #
 # OUTPUT:
-#   plain text
+#   Missing example:
+#     CheckNetworkAdapter CRITICAL:
+#       The following adapters are missing:
+#         - Ethernet
+#
+#   OK example: 
+#     CheckNetworkAdapter OK:
+#       All interfaces are up.
+#
+#   WARN example:
+#     CheckNetworkAdapter WARN:
+#       The following important adapters are dow
+#         - OOB MANAGEMENT
+#
+#   CRITICAL example:
+#     CheckNetworkAdapter CRITICAL:
+#       The following critical adapters are down:
+#         - CLUSTER HEARTBEAT
+#       The following important adapters are down:
+#         - OOB MANAGEMENT
 #
 # PLATFORMS:
 #   Windows
@@ -27,7 +47,8 @@
 #
 # LICENSE:
 #   Copyright 2016 James Booth <james@absolutejam.co.uk>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
+#   Released under the same terms as Sensu (the MIT license); see LICENSE for 
+#   details.
 #
 
 
@@ -77,7 +98,7 @@ $CheckOptions = @{
     }
 
     'CheckHelp' = @'
-Checks whether any specified items are in a failed state.
+Checks whether any specified network adapters are not 'up'.
 
 Arguments:
   -CriticalAdapters    A string of comma-separated network adapters
@@ -85,7 +106,7 @@ Arguments:
   -Help                Show help
 
 Example usage:
-  powershell.exe -file check-multi-template.ps1 -criticaladapters "CLUSTER NETWORK" -warningitems "MONITORING NETWORK"
+  powershell.exe -file check-adapters.ps1 -criticaladapters "CLUSTER NETWORK" -warningitems "MONITORING NETWORK"
 
 '@
 }
