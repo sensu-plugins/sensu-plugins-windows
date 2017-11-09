@@ -23,16 +23,16 @@
 #      The following important sessions are not connected:
 #        - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol01
 #
-#   CRITICAL example:
-#     CheckIscsi CRITICAL:
-#       The following critical sessions are not connected:
-#         - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol01
+#  CRITICAL example:
+#    CheckIscsi CRITICAL:
+#      The following critical sessions are not connected:
+#        - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol01
 #
-#     CheckIscsi CRITICAL:
-#       The following critical sessions are not connected:
-#         - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol01
-#       The following important sessions are not connected:
-#         - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol02
+#    CheckIscsi CRITICAL:
+#      The following critical sessions are not connected:
+#        - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol01
+#      The following important sessions are not connected:
+#        - iqn.2001-05.com.equallogic:4-42a846-3d3bb3c30-9140000001255ddf-vol02
 #
 # PLATFORMS:
 #   Windows
