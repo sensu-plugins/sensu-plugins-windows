@@ -93,7 +93,7 @@ $CheckOptions = @{
         Select-Object -ExpandProperty Name
     }
     # ScriptBlock to get FAILED items
-    'ScriptBlockFailedItems' = {
+    'ScriptBlockMatchItems' = {
         Get-Service |
         Where-Object { $_.Status -ne 'Running' } |
         Select-Object -ExpandProperty Name
@@ -132,9 +132,15 @@ Function Format-ParamArray {
         [Parameter(
             Mandatory = $False
         )]
-        [array]$Param = @()
+        [string[]]$Param = @()
     )
-    
+
+    # Convert a single string into an array with a single value
+    if ($Param -is [string]) {
+        $Return = @($Param)
+        return ,$Return
+    }
+
     # Flatten the (potential) array into a string
     $Param = $Param -Join ','
     # Strip any instances of 'None'
@@ -146,9 +152,9 @@ Function Format-ParamArray {
         $Param = $Param.substring(0, $Param.Length-1)
     }
     # Split into an array
-    $Param = $Param -split ','
+    [array]$Param = $Param -split ','
 
-    return $Param
+    return ,$Param
 }
 
 Function Write-ExitState {
@@ -210,13 +216,12 @@ Function Add-OutputEntry {
         [string]$Message
     )
 
-    $Output.Add(
-        [pscustomobject]@{
-            'State' = $State
-            'Items' = $Items
-            'Message' = $Message
-        }
-    ) | Out-Null
+    $OutputEntry = New-Object PSObject -Property @{
+        'State' = $State
+        'Items' = $Items
+        'Message' = $Message
+    }
+    $Output.Add($OutputEntry) | Out-Null
 
 }
 
@@ -265,7 +270,6 @@ Function Compare-CheckItems {
         or compare a list of users we want to ensure are absent from
         the system against all users on the system.
 
-    
     .PARAMETER BaseItems
         An arrayo of all items in a specific state, such as all services 
         available or all network adapters that are disconnected.
@@ -321,12 +325,13 @@ Function Compare-CheckItems {
                        Select-Object -ExpandProperty InputObject
     }
 
-    return $ReturnItems
-
-    if ($ReturnItems.Count -eq 0) {
-        return @()
+    # This hackery forces Powershell to return an array and stops it mangling
+    # it into $Null or a string
+    if ($ReturnItems -eq $Null) {
+        $ReturnItems = ,@()
+        Return $ReturnItems
     } else {
-        return $ReturnItems
+        return ,$ReturnItems
     }
 }
 
@@ -342,21 +347,21 @@ Function Get-CheckStatus {
 
     switch ($State) {
         0 {
-            return [pscustomobject]@{
+            return New-Object PSObject -Property @{
                 'Status' = 'OK:'
                 'MessageBody' = $CheckOptions.MessageOK
             }
         }
 
         1 {
-            return [pscustomobject]@{
+            return New-Object PSObject -Property @{
                 'Status' = 'WARN:'
                 'MessageBody' = $CheckOptions.MessageImportant
             }
         }
 
         2 {
-            return [pscustomobject]@{
+            return New-Object PSObject -Property @{
                 'Status' = 'CRITICAL:'
                 'MessageBody' = $CheckOptions.MessageCritical
             }
@@ -502,17 +507,20 @@ Function Invoke-Main {
     $CriticalItemList = Format-ParamArray -Param $CriticalItems
     $ImportantItemList = Format-ParamArray -Param $ImportantItems
 
-    # Write-ExitState -ExitState if no/null parameters specified
+    # Exit if no/null parameters specified
     Test-NullParameters -Parameters $CriticalItemList,$ImportantItemList
 
     # Evaluate the scriptblocks so we can compare items passed into the script
     # vs. running state.
-    $BaseItems = & $CheckOptions.ScriptblockBaseItems
-    $FailedItems = & $CheckOptions.ScriptblockFailedItems
-    if ($FailedItems.Count -eq 0) { $FailedItems = @() }
+    if ($CheckOptions.CheckMissing) {
+        $BaseItems = & $CheckOptions.ScriptblockBaseItems
+    }
+    $MatchItems = & $CheckOptions.ScriptBlockMatchItems
+    if ($MatchItems.Count -eq 0) { $MatchItems = ,@() }
 
-    # Check that all of the items specified are present
-    if ($CheckOptions.CheckMissing -or 
+    # Check that all of the items specified are present before checking their
+    # status
+    if ($CheckOptions.CheckMissing -and
         $CheckOptions.Inverse -ne $True) {
         $MissingItems = Compare-CheckItems -BaseItems $BaseItems `
                                            -CompareItems $CriticalItemList,
@@ -526,37 +534,48 @@ Function Invoke-Main {
         }
     }
 
+
     # ImportantItems
     if ($CheckOptions.Inverse) {
-        $FailedImportantItems = Compare-CheckItems `
-                                              -BaseItems $FailedItems `
+        # Only return items that are MISSING from $MatchItems
+        $MatchedImportantItems = Compare-CheckItems `
+                                              -BaseItems $MatchItems `
                                               -CompareItems $ImportantItemList `
                                               -Missing
+
     } else {
-        $FailedImportantItems = Compare-CheckItems `
-                                              -BaseItems $FailedItems `
+        # Return items that match those in $MatchItems
+        $MatchedImportantItems = Compare-CheckItems `
+                                              -BaseItems $MatchItems `
                                               -CompareItems $ImportantItemList
+                             
     }
 
-    if ($FailedImportantItems.Count -gt 0) {
-        Add-OutputEntry -State 1 -Items $FailedImportantItems
+    if ($MatchedImportantItems.Count -gt 0) {
+        Add-OutputEntry -State 1 -Items $MatchedImportantItems
     }
+
+
 
     # CriticalItems
     if ($CheckOptions.Inverse) {
-        $FailedCriticalItems = Compare-CheckItems `
-                                             -BaseItems $FailedItems `
+        # Only return items that are MISSING from $MatchItems
+        $MatchedCriticalItems = Compare-CheckItems `
+                                             -BaseItems $MatchItems `
                                              -CompareItems $CriticalItemList `
                                              -Missing
     } else {
-        $FailedCriticalItems = Compare-CheckItems `
-                                             -BaseItems $FailedItems `
+        # Return items that match those in $MatchItems
+        $MatchedCriticalItems = Compare-CheckItems `
+                                             -BaseItems $MatchItems `
                                              -CompareItems $CriticalItemList
     }
 
-    if ($FailedCriticalItems.Count -gt 0) {
-        Add-OutputEntry -State 2 -Items $FailedCriticalItems
+    if ($MatchedCriticalItems.Count -gt 0) {
+        Add-OutputEntry -State 2 -Items $MatchedCriticalItems
     }
+
+
 
     # No issues so far!
     if ($Output.Count -eq 0) {
