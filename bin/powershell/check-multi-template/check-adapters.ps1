@@ -25,7 +25,7 @@
 #
 #   WARN example:
 #     CheckNetworkAdapter WARN:
-#       The following important adapters are dow
+#       The following important adapters are down:
 #         - OOB MANAGEMENT
 #
 #   CRITICAL example:
