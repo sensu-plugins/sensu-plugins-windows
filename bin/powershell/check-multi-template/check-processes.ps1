@@ -95,8 +95,8 @@ $CheckOptions = @{
 Checks whether any specified processes are not running.
 
 Arguments:
-  -CriticalProcesses    A string of comma-separated network adapters
-  -ImportantProcesses   A string of comma-separated network adapters
+  -CriticalProcesses    A string of comma-separated processes
+  -ImportantProcesses   A string of comma-separated processes
   -Help                 Show help
 
 Example usage:
