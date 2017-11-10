@@ -91,13 +91,13 @@ $CheckOptions = @{
         Select-Object -ExpandProperty TargetNodeAddress
     }
 
-    'ScriptBlockFailedItems' = {
+    'ScriptBlockMatchItems' = {
         Get-IscsiSession |
         Select-Object -ExpandProperty TargetNodeAddress
     }
 
     'CheckHelp' = @'
-Checks whether any specified items are in a failed state.
+Checks whether any specified iSCSI sessions are not connected.
 
 Arguments:
   -CriticalIQNs    A string of comma-separated iSCSI IQNs
@@ -105,7 +105,7 @@ Arguments:
   -Help            Show help
 
 Example usage:
-  powershell.exe -file check-iscsi.ps1 -criticaliqns "iqn..." -warningitems "iqn..."
+  powershell.exe -file check-iscsi.ps1 -criticaliqns "iqn..." -warningiqns "iqn..."
 
 '@
 }

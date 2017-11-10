@@ -91,7 +91,7 @@ $CheckOptions = @{
         Select-Object -ExpandProperty Name
     }
 
-    'ScriptBlockFailedItems' = {
+    'ScriptBlockMatchItems' = {
         Get-NetAdapter |
         Where-Object { $_.Status -ne 'Up' } |
         Select-Object -ExpandProperty Name
@@ -106,7 +106,7 @@ Arguments:
   -Help                Show help
 
 Example usage:
-  powershell.exe -file check-adapters.ps1 -criticaladapters "CLUSTER NETWORK" -warningitems "MONITORING NETWORK"
+  powershell.exe -file check-adapters.ps1 -criticaladapters "CLUSTER NETWORK" -warningadapters"MONITORING NETWORK"
 
 '@
 }
