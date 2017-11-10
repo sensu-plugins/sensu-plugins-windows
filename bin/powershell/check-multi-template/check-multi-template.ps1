@@ -512,7 +512,8 @@ Function Invoke-Main {
 
     # Evaluate the scriptblocks so we can compare items passed into the script
     # vs. running state.
-    if ($CheckOptions.CheckMissing -ne $False) {
+    if ($CheckOptions.CheckMissing -ne $False -and
+        $CheckOptions.Inverse -ne $True) {
         $BaseItems = & $CheckOptions.ScriptblockBaseItems
     }
     $MatchItems = & $CheckOptions.ScriptBlockMatchItems
