@@ -299,9 +299,11 @@ Function Compare-CheckItems {
     # If an array of arrays was passed, extract all values. Otherwise just 
     # use values from array.
     $MergedCompareItems = New-Object -TypeName System.Collections.ArrayList
-    ForEach ($Item in $CompareItems | Where-Object { $_ -ne '' }) {
+    ForEach ($Item in $CompareItems |
+             Where-Object { $_ -ne '' }) {
         if ($Item -is [array]) {
-            ForEach ($ArrayItem in $Item) {
+            ForEach ($ArrayItem in $Item |
+                     Where-Object { $_ -ne '' }) {
                 $MergedCompareItems.Add($ArrayItem) | Out-Null
             }
         } else {
