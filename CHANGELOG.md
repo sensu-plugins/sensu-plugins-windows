@@ -6,6 +6,15 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Added
+- new check: `powershell/check-multi-template/check-processes.ps1` (@absolutejam)
+- new check `powershell/check-multi-template/check-services.ps1` (@absolutejam)
+- new check `powershell/check-multi-template/check-multi-template.ps1` (@absolutejam)
+- new check `powershell/check-multi-template/check-iscsi.ps1` (@absolutejam)
+- new check `powershell/check-multi-template/check-focusedprocess.ps1` (@absolutejam)
+- new check: `powershell/check-multi-template/check-adapters.ps1` (@absolutejam)
+- documentation `powershell/check-multi-template/README.md` (@absolutejam)
+
 ## [2.2.1] - 2017-09-25
 ### Changed
 - update changelog guidelines location (@majormoses)
