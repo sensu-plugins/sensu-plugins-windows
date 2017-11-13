@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Added
+- minimal `appveyor.yml` (@majormoses)
+- badges for `slack` and `appveyor` (@majormoses)
+
 ## [2.3.0] - 2017-11-12
 ### Added
 - new check: `powershell/check-multi-template/check-processes.ps1` (@absolutejam)

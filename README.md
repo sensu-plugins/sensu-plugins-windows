@@ -5,6 +5,8 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-windows)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-windows.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-windows)
+[![Appveyor status](https://ci.appveyor.com/api/projects/status/j6cg9tmxs6ivscrd/branch/master?svg=true)](https://ci.appveyor.com/project/majormoses/sensu-plugins-windows/branch/master)
+[![Community Slack](https://slack.sensu.io/badge.svg)](https://slack.sensu.io/badge)
 
 ## Functionality
 
