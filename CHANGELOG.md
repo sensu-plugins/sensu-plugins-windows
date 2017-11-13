@@ -6,6 +6,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.3.0] - 2017-11-12
 ### Added
 - new check: `powershell/check-multi-template/check-processes.ps1` (@absolutejam)
 - new check `powershell/check-multi-template/check-services.ps1` (@absolutejam)
@@ -134,6 +135,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 - Initial release
 
 [Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.1...HEAD
+[2.3.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.0.0...2.1.0
