@@ -32,6 +32,11 @@ class CheckDisk < Sensu::Plugin::Check::CLI
          short: '-t TYPE',
          proc: proc { |a| a.split(',') }
 
+  option :mount_points,
+         short: '-o MNT',
+         long: '--mount_points',
+         proc: proc { |a| a.split(',') }
+
   option :ignoretype,
          short: '-x TYPE',
          proc: proc { |a| a.split(',') }
@@ -69,6 +74,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
         next if _avail.nil?
         next if line.include?('System Reserved')
         next if line.include?('\Volume')
+        next if config[:mount_points] && !config[:mount_points].include?(mnt)
         next if config[:fstype] && !config[:fstype].include?(type)
         next if config[:ignoretype] && config[:ignoretype].include?(type)
         next if config[:ignoremnt] && config[:ignoremnt].include?(mnt)
