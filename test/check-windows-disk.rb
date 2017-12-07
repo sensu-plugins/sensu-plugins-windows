@@ -6,33 +6,31 @@ describe CheckDisk do
   end
 
   describe '--mount_points flag' do
-
-    let(:check) {
+    let(:check) do
       CheckDisk.new
-    }
+    end
 
     before(:each) do
       # Stub the ` method
-      mock_wmic =
-'
+      mock_wmic = '
 Node,Capacity,DriveType,FileSystem,FreeSpace,Label,Name
 D002-JB,249532772352,3,NTFS,6416957440,CRITICALDrive,C:\\
 D002-JB,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
 
-      allow(check).
-      to receive(:`).
-      with("wmic volume where DriveType=3 list brief /format:csv").
-      and_return(mock_wmic)
+      allow(check)
+        .to receive(:`)
+        .with('wmic volume where DriveType=3 list brief /format:csv')
+        .and_return(mock_wmic)
     end
 
     def check_mount_point(mnt)
-      check.config[:mount_points] = [ mnt ]
-      expect {
+      check.config[:mount_points] = [mnt]
+      expect do
         begin
           check.run
-        rescue SystemExit
+        rescue SystemExit # rubocop:disable HandleExceptions
         end
-      }
+      end
     end
 
     it 'should match CRITICAL when checking C: drive' do
@@ -42,6 +40,5 @@ D002-JB,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
     it 'should match OK when checking D: drive' do
       check_mount_point('D:\\').to output(/CheckDisk OK/).to_stdout
     end
-
   end
 end
