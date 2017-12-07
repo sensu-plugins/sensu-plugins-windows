@@ -14,8 +14,8 @@ describe CheckDisk do
       # Stub the ` method
       mock_wmic = '
 Node,Capacity,DriveType,FileSystem,FreeSpace,Label,Name
-D002-JB,249532772352,3,NTFS,6416957440,CRITICALDrive,C:\\
-D002-JB,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
+Localhost,249532772352,3,NTFS,6416957440,CRITICALDrive,C:\\
+Localhost,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
 
       allow(check)
         .to receive(:`)
