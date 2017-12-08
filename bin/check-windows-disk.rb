@@ -33,7 +33,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
          proc: proc { |a| a.split(',') }
 
   option :mount_points,
-         short: '-o MNT',
+         short: '-m MNT',
          long: '--mount_points',
          proc: proc { |a| a.split(',') }
 
