@@ -36,7 +36,7 @@ Localhost,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
       check.parse_options ['--mount_points', 'C:\\']
       check_mount_point(check).to output(/CheckDisk CRITICAL/).to_stdout
     end
-    
+
     it 'should match CRITICAL when checking C: drive with short flags' do
       check.parse_options ['--m', 'C:\\']
       check_mount_point(check).to output(/CheckDisk CRITICAL/).to_stdout
