@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- `check-windows-service.rb`: adds --mount_points option to explicitly specify which drive mounts to check (@absolutejam)
 
 ### Added
 - minimal `appveyor.yml` (@majormoses)
