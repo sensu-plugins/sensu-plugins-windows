@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.5.0] - 2018-04-06
+## Added
+- minimal `powershell_helper.rb` (@makaveli0129)
+
 ## [2.4.0] - 2017-12-08
 ### Added
 - minimal `appveyor.yml` (@majormoses)
