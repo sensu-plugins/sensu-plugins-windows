@@ -27,10 +27,10 @@
 #
 
 if ARGV.empty?
-  puts "You must specify arguments for powershell file"
+  puts 'You must specify arguments for powershell file'
   exit 2
 end
 
-powershell_dir = File.expand_path("./powershell",File.dirname(__FILE__))
-command = "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File #{File.expand_path(ARGV.join(' '),powershell_dir)}"
+powershell_dir = File.expand_path('./powershell', File.dirname(__FILE__))
+command = "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File #{File.expand_path(ARGV.join(' '), powershell_dir)}"
 exec command
