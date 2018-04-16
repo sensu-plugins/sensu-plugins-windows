@@ -11,7 +11,7 @@
 #   Windows
 #
 # DEPENDENCIES:
-#   Powershell 3.0 or above
+#   Powershell
 #
 # USAGE:
 #   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-http.ps1 https://google.com
@@ -23,8 +23,6 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 
-#Requires -Version 3.0
-
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
@@ -35,24 +33,24 @@ $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
 try {
-  $Avaliable = Invoke-WebRequest $CheckAddress -ErrorAction SilentlyContinue
+  $Available = Invoke-WebRequest $CheckAddress -ErrorAction SilentlyContinue
 }
 
 catch {
-  $errorandler = $_.Exception.request
+  $errorhandler = $_.Exception.request
 }
 
-if (!$Avaliable) {
+if (!$Available) {
   Write-Host CRITICAL: Could not connect  $CheckAddress!
   Exit 2 
 }
 
-if ($Avaliable) {
-   if ($Avaliable.statuscode -eq 200) {
-      Write-Host OK: $CheckAddress is avaliable!
+if ($Available) {
+   if ($Available.statuscode -eq 200) {
+      Write-Host OK: $CheckAddress is available!
       Exit 0
    } else {
-      Write-Host CRITICAL: URL $CheckAddress is not accessable!
+      Write-Host CRITICAL: URL $CheckAddress is not accessible!
       Exit 2
    }
 }
