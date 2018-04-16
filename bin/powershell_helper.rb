@@ -22,7 +22,7 @@
 # NOTES:
 #
 # LICENSE:
-#   Copyright 2015 <dasecretzofwar@gmail.com>
+#   Copyright 2018 <dasecretzofwar@gmail.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
 
