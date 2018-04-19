@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### [2.4.1] - 2018-04-18
+### Fixed
+- check-windows-http.ps1: fixed typo (@stevebanik-ndsc)
+
 ## [2.4.0] - 2017-12-08
 ### Added
 - minimal `appveyor.yml` (@majormoses)
@@ -139,7 +143,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.1...HEAD
+[2.4.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.0...2.2.1
