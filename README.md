@@ -49,7 +49,9 @@ These files provide basic Checks and Metrics for a Windows system.
 
 ## Usage
 
-Execute Powershell functions using the helper, see example below:
+##### Example 1:
+
+Execute Powershell functions using the helper (No copy needed), see example below:
 
 ```json
   {
@@ -58,6 +60,26 @@ Execute Powershell functions using the helper, see example below:
         "command": "c:\\opt\\sensu\\embedded\\bin\\ruby C:\\opt\\sensu\\embedded\\bin\\powershell_helper.rb check-windows-ram.ps1 90 95",
         "interval": 30,
         "type": "check",
+        "handler": "win_metrics",
+        "subscribers": ["win_metrics"]
+      }
+    }
+  }
+```
+
+##### Example 2:
+
+- Copy either the Ruby or Powershell files on a Sensu Client, typically under C:\etc\sensu\plugins.
+
+- You should also include the full escaped path to the ruby interpreter in the check's command configuration, see example below:
+
+```json
+  {
+    "checks": {
+      "cpu_percent": {
+        "command": "c:\\opt\\sensu\\embedded\\bin\\ruby C:\\opt\\sensu\\etc\\plugins\\metric-windows-cpu-load.rb",
+        "interval": 30,
+        "type": "metric",
         "handler": "win_metrics",
         "subscribers": ["win_metrics"]
       }
