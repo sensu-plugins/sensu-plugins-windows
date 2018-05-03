@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- powershell_helper.rb, added helper to wrap around Powershell directory (@makaveli0129).
+###Changed
+- README.md, changed to include calls for powershell_helper.rb (@makaveli0129).
 
 ### [2.4.1] - 2018-04-18
 ### Fixed
