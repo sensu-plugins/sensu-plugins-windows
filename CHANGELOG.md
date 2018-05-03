@@ -5,9 +5,12 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [2.5.0] - 2018-05-02
 ### Added
 - powershell_helper.rb, added helper to wrap around Powershell directory (@makaveli0129).
-###Changed
+
+### Changed
 - README.md, changed to include calls for powershell_helper.rb (@makaveli0129).
 
 ### [2.4.1] - 2018-04-18
@@ -147,7 +150,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.1...2.5.0
 [2.4.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.2.1...2.3.0
