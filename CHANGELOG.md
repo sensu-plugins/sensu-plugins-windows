@@ -5,6 +5,12 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+##[2.5.1] - 2018-05-08
+### Added
+- check-windows-log.ps1, added plugin to check for pattern in log file (@patricewhite).
+
+### Changed
+- README.md, changed to include new plugin (@patricewhite).
 
 ## [2.6.0] - 2018-05-09
 ### Added
