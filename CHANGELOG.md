@@ -6,6 +6,13 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+##[2.5.1] - 2018-05-08
+### Added
+- check-windows-directory.ps1, added plugin to check if a directory exist (@patricewhite).
+
+### Changed
+- README.md, changed to include new plugin (@patricewhite).
+
 ## [2.5.0] - 2018-05-02
 ### Added
 - powershell_helper.rb, added helper to wrap around Powershell directory (@makaveli0129).
