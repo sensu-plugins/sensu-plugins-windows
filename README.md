@@ -47,6 +47,8 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/metric-windows-ram-usage.ps1
  * bin/powershell/metric-windows-uptime.ps1
  * bin/powershell/check-windows-event-log.ps1
+ * bin/powershell/check-windows-log.ps1
+
 
 ## Usage
 
