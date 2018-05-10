@@ -6,6 +6,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.8.0] - 2018-05-10
 ### Added
 - check-windows-directory.ps1, added plugin to check if a directory exist (@patricewhite).
 
@@ -164,7 +165,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.7.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.0...HEAD
+[2.8.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.7.0...2.8.0
 [2.7.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.6.0...2.7.0
 [2.6.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.4.1...2.5.0
