@@ -46,13 +46,10 @@ These files provide basic Checks and Metrics for a Windows system.
  * bin/powershell/metric-windows-processor-queue-length.ps1
  * bin/powershell/metric-windows-ram-usage.ps1
  * bin/powershell/metric-windows-uptime.ps1
-<<<<<<< HEAD
  * bin/powershell/check-windows-directory.ps1
-=======
  * bin/powershell/check-windows-event-log.ps1
  * bin/powershell/check-windows-log.ps1
 
->>>>>>> bc6443ff2c6ef57497c88a1d664879cc1c587c06
 
 ## Usage
 
