@@ -6,6 +6,12 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Added
+- check-windows-event-log.ps1, added plugin to check for pattern and returns the number criticals and warnings that match that pattern (@patricewhite).
+
+### Changed
+- README.md, changed to include new plugin (@patricewhite).
+
 ## [2.5.0] - 2018-05-02
 ### Added
 - powershell_helper.rb, added helper to wrap around Powershell directory (@makaveli0129).
