@@ -6,6 +6,9 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Added
+- check-windows-directory.ps1, added plugin to check if a directory exist (@patricewhite).
+
 ## [2.7.0] - 2018-05-09
 ### Changed
 - check-windows-event-log.ps1, added plugin to check for pattern and returns the number criticals and warnings that match that pattern (@patricewhite)
