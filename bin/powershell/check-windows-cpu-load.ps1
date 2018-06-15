@@ -34,18 +34,11 @@ Param(
    [int]$CRITICAL
 )
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
-
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
-$perfCounterID = Get-PerformanceCounterByID -Name '% Processor Time'
-
-$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
-$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
-
-$Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+$Value = Get-CimInstance -ClassName win32_processor | Measure-Object -property LoadPercentage -Average | select average
+$Value = $Value.average
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.

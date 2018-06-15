@@ -45,7 +45,7 @@ If ($IGNORE -eq "") {
   $IGNORE = "ab" 
 }
 
-$AllDisks = Get-WMIObject Win32_LogicalDisk -Filter "DriveType = 3" | Where-Object{ $_.DeviceID -notmatch "[$IGNORE]:"}
+$AllDisks = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = 3" | ? { $_.DeviceID -notmatch "[$ignore]:"}
 
 $crit = 0
 $warn = 0
