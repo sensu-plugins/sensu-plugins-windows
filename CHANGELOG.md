@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.9.0] - 2018-06-28
+### Changed
+- rewrite of any powershell check/metric that used get-wmiobject to use native CIM calls instead to resolve huge performance issues at large scale (@csabo)
+
 ## [2.8.0] - 2018-05-10
 ### Added
 - check-windows-directory.ps1, added plugin to check if a directory exist (@patricewhite).
