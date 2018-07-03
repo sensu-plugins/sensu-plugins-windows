@@ -38,7 +38,7 @@ if ($UseFullyQualifiedHostname -eq $false) {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
-$AllDisks = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = 3" | ? { $_.DeviceID -notmatch "[ab]:"}
+$AllDisks = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = 3" | Where-Object { $_.DeviceID -notmatch "[ab]:"}
 
 foreach ($ObjDisk in $AllDisks) 
 {

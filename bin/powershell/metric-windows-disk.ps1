@@ -27,6 +27,9 @@ param(
     [switch]$UseFullyQualifiedHostname
     )
 
+$counters =  New-Object System.Collections.ArrayList
+$instances =  @{}
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -38,24 +41,51 @@ if ($UseFullyQualifiedHostname -eq $false) {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
-$driveArray=(Get-CimInstance -ClassName Win32_PerfFormattedData_PerfDisk_PhysicalDisk | Where Name -NotLike '_Total' |Select -ExpandProperty Name)
+$perfCategoryID = Get-PerformanceCounterByID -Name 'PhysicalDisk'
+$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 
-foreach ($drive in $driveArray) {
-    $driveLetter = $drive -Replace '[^a-zA-Z]', ''
-    $perfObject=(Get-CimInstance -ClassName Win32_PerfFormattedData_PerfDisk_PhysicalDisk -Filter "Name Like '$drive'")
+[void]$counters.Add('Avg. Disk Bytes/Read')
+[void]$counters.Add('Avg. Disk Bytes/Write')
+[void]$counters.Add('Avg. Disk sec/Read')
+[void]$counters.Add('Avg. Disk sec/Write')
+[void]$counters.Add('Current Disk Queue Length')
 
-    $value=($perfObject | Select -ExpandProperty AvgDiskBytesPerRead)
-    Write-Host "$Path.disk.iostat.$diskname.read_bytes $value $Time"
+foreach ($ObjDisk in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) {
 
-    $value=($perfObject | Select -ExpandProperty AvgDiskBytesPerWrite)
-    Write-Host "$Path.disk.iostat.$diskname.write_bytes $value $Time"
-
-    $value=($perfObject | Select -ExpandProperty AvgDisksecPerRead)
-    Write-Host "$Path.disk.iostat.$diskname.read_await $value $Time"
-
-    $value=($perfObject | Select -ExpandProperty AvgDisksecPerWrite)
-    Write-Host "$Path.disk.iostat.$diskname.write_await $value $Time"
-
-    $value=($perfObject | Select -ExpandProperty CurrentDiskQueueLength)
-    Write-Host "$Path.disk.iostat.$diskname.queue_length $value $Time"
+   if ($instances.ContainsKey($ObjDisk.InstanceName) -eq $false) {
+        
+        if ($ObjDisk.InstanceName.ToLower() -ne '_total') {
+            $disk = $ObjDisk.InstanceName
+            $disk = $disk.Remove(0,1)
+            $disk = $disk.Replace(":","")
+            $disk = $disk.Trim()
+            $instances.Add($ObjDisk.InstanceName,$disk.toUpper())
+        }
+        
+   }
+    
 }
+
+foreach ($diskkey in $instances.Keys) {
+
+    $diskname = $instances.$diskkey
+
+    foreach ($counter in $counters) {
+
+        $perfCounterID = Get-PerformanceCounterByID -Name $counter
+        $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
+        $value = [System.Math]::Round((Get-Counter "\$localizedCategoryName($diskkey)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+
+        $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
+
+        if ($counter -eq 'Avg. Disk Bytes/Read') { Write-Host "$Path.disk.iostat.$diskname.read_bytes $value $Time" }
+        if ($counter -eq 'Avg. Disk Bytes/Write') { Write-Host "$Path.disk.iostat.$diskname.write_bytes $value $Time" }
+        if ($counter -eq 'Avg. Disk sec/Read') { Write-Host "$Path.disk.iostat.$diskname.read_await $value $Time" }
+        if ($counter -eq 'Avg. Disk sec/Write') { Write-Host "$Path.disk.iostat.$diskname.write_await $value $Time" }
+        if ($counter -eq 'Current Disk Queue Length') { Write-Host "$Path.disk.iostat.$diskname.queue_lenght $value $Time" }
+
+    }
+
+}
+
+

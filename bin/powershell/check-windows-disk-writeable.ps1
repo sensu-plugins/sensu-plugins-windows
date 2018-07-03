@@ -51,7 +51,7 @@ $critDisks = ""
 
 $AllDisks = @()
 Foreach ($DT in $($DriveType -split(','))) {
-  Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = ${DT}" | ? { $_.DeviceID -notmatch "[$($Ignore.Replace(',',''))]:"} | %{ $AllDisks += $_ }
+  Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = ${DT}" | Where-Object { $_.DeviceID -notmatch "[$($Ignore.Replace(',',''))]:"} | %{ $AllDisks += $_ }
 }
 
 if ($AllDisks.count -eq 0) {

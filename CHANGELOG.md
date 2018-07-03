@@ -5,8 +5,6 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-
-## [2.9.0] - 2018-06-28
 ### Changed
 - rewrite of any powershell check/metric that used get-wmiobject to use native CIM calls instead to resolve huge performance issues at large scale (@csabo)
 
