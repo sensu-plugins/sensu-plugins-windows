@@ -59,6 +59,6 @@ $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 if ($counter -eq '% Processor Time') { Write-Host "$Path.cpu.percent.total $value $Time" }
 if ($counter -eq '% Idle Time') { Write-Host "$Path.cpu.percent.idle $value $Time" }
 if ($counter -eq '% User Time') { Write-Host "$Path.cpu.percent.user $value $Time" }
-if ($counter -eq '% Interrupt Time') { Write-Host "$Path.cpu.percent.user $value $Time" }
+if ($counter -eq '% Interrupt Time') { Write-Host "$Path.cpu.percent.interrupt $value $Time" }
 
 }
