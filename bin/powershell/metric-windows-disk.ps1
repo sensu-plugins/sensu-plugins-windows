@@ -53,7 +53,7 @@ $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 foreach ($ObjDisk in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) {
 
    if ($instances.ContainsKey($ObjDisk.InstanceName) -eq $false) {
-        
+
         if ($ObjDisk.InstanceName.ToLower() -ne '_total') {
             $disk = $ObjDisk.InstanceName
             $disk = $disk.Remove(0,1)
@@ -61,9 +61,9 @@ foreach ($ObjDisk in (Get-Counter -Counter "\$localizedCategoryName(*)\*").Count
             $disk = $disk.Trim()
             $instances.Add($ObjDisk.InstanceName,$disk.toUpper())
         }
-        
+
    }
-    
+
 }
 
 foreach ($diskkey in $instances.Keys) {
@@ -82,10 +82,8 @@ foreach ($diskkey in $instances.Keys) {
         if ($counter -eq 'Avg. Disk Bytes/Write') { Write-Host "$Path.disk.iostat.$diskname.write_bytes $value $Time" }
         if ($counter -eq 'Avg. Disk sec/Read') { Write-Host "$Path.disk.iostat.$diskname.read_await $value $Time" }
         if ($counter -eq 'Avg. Disk sec/Write') { Write-Host "$Path.disk.iostat.$diskname.write_await $value $Time" }
-        if ($counter -eq 'Current Disk Queue Length') { Write-Host "$Path.disk.iostat.$diskname.queue_lenght $value $Time" }
+        if ($counter -eq 'Current Disk Queue Length') { Write-Host "$Path.disk.iostat.$diskname.queue_length $value $Time" }
 
     }
 
 }
-
-
