@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Fixed
+- metric-windows-cpu-load.ps1: report the correct metric value for interrupts  (@makaveli0129)
+- metric-windows-disk.ps1: fix typo that prevented disk queue length to be reported properly (@makaveli0129)
+
 ## [2.8.0] - 2018-05-10
 ### Added
 - check-windows-directory.ps1, added plugin to check if a directory exist (@patricewhite).
