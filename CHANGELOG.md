@@ -6,6 +6,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.8.1] - 2018-07-19
 ### Fixed
 - metric-windows-cpu-load.ps1: report the correct metric value for interrupts  (@makaveli0129)
 - metric-windows-disk.ps1: fix typo that prevented disk queue length to be reported properly (@makaveli0129)
@@ -169,7 +170,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.1...HEAD
+[2.8.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.7.0...2.8.0
 [2.7.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.6.0...2.7.0
 [2.6.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.5.0...2.6.0
