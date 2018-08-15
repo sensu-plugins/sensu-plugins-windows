@@ -6,7 +6,16 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 ### Changed
-- rewrite of any powershell check/metric that used get-wmiobject to use native CIM calls instead to resolve huge performance issues at large scale (@csabo)
+- updated check: `powershell/check-windows-disk-writeable.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-disk.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-pagefile.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-processor-queue-length.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-ram.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-disk-usage.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-processor-queue-length.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-ram-usage.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+
+
 
 ## [2.8.0] - 2018-05-10
 ### Added
