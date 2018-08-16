@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- README.md, added troubleshooting section with fix for corrupt performance counters [issue #35](https://github.com/sensu-plugins/sensu-plugins-windows/issues/35) (@csabo)
 
 ## [2.8.1] - 2018-07-19
 ### Fixed

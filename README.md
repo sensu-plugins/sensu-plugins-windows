@@ -110,6 +110,11 @@ You should also include the full escaped path to the ruby interpreter in the che
 ## Dependencies
  * Powershell checks require Powershell version 3.0 or higher.
 
+## Troubleshooting
+* Failures to pull counter data with messages like below, might be due to corrupt performance counters. See [Here](https://support.microsoft.com/en-us/help/2554336/how-to-manually-rebuild-performance-counters-for-windows-server-2008-6) for more information.  Short answer on fix is `lodctr /R` in an Admin elevated command prompt
+
+`Check failed to run: undefined method length' for nil:NilClass, "c:/opt/sensu/plugins/check-windows-ram.rb:45:inacquire_ram_usage'", "c:/opt/sensu/plugins/check-windows-ram.rb:54:in run'", "c:/opt/sensu/embedded/lib/ruby/gems/2.0.0/gems/sensu-plugin-1.`
+
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
