@@ -5,6 +5,17 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- updated check: `powershell/check-windows-disk-writeable.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-disk.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-pagefile.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-processor-queue-length.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/check-windows-ram.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-disk-usage.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-processor-queue-length.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+- updated check: `powershell/metric-windows-ram-usage.ps1` now using CIM instead of WMI for large performance gain (@csabo)
+
+
 
 ### Added
 - README.md, added troubleshooting section with fix for corrupt performance counters [issue #35](https://github.com/sensu-plugins/sensu-plugins-windows/issues/35) (@csabo)

@@ -37,7 +37,7 @@ Param(
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
+$Value = (Get-CimInstance -className Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsProcessorQueueLength CRITICAL: Processor Queue at $Value.

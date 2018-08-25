@@ -37,7 +37,7 @@ if ($UseFullyQualifiedHostname -eq $false) {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
-$Value = (Get-WmiObject Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
+$Value = (Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_System).ProcessorQueueLength
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 
 Write-Host "$Path.cpu.queue_length $Value $Time"

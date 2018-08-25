@@ -37,8 +37,9 @@ if ($UseFullyQualifiedHostname -eq $false) {
     $Path = [System.Net.Dns]::GetHostEntry([string]"localhost").HostName.toLower()
 }
 
-$FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
-$TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
+$Memory = (Get-CimInstance -ClassName Win32_OperatingSystem)
+$FreeMemory = $Memory.FreePhysicalMemory
+$TotalMemory = $Memory.TotalVisibleMemorySize
 $UsedMemory = $TotalMemory-$FreeMemory
 
 $Value = [System.Math]::Round(((($TotalMemory-$FreeMemory)/$TotalMemory)*100),2)

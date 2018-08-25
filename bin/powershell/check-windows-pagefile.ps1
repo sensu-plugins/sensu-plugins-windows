@@ -37,8 +37,8 @@ Param(
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-[int]$pagefileAllocated = Get-WmiObject -Class Win32_PageFileUsage | Select -ExpandProperty AllocatedBaseSize
-[int]$pagefileCurrentUsage = Get-WmiObject -Class Win32_PageFileUsage | Select -ExpandProperty CurrentUsage
+[int]$pagefileAllocated = (Get-CimInstance -classname Win32_PageFileUsage).AllocatedBaseSize
+[int]$pagefileCurrentUsage = (Get-CimInstance -classname Win32_PageFileUsage).CurrentUsage
 
 [int]$Value = ($pagefileCurrentUsage/$pagefileAllocated) * 100
 
