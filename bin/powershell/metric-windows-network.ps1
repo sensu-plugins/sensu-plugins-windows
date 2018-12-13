@@ -28,9 +28,6 @@ param(
     [switch]$UseFullyQualifiedHostname
     )
 
-$ThisProcess = Get-Process -Id $pid
-$ThisProcess.PriorityClass = "BelowNormal"
-
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
 if ($UseFullyQualifiedHostname -eq $false) {
