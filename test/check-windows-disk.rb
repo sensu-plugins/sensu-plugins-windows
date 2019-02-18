@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../bin/check-windows-disk.rb'
 
 describe CheckDisk do

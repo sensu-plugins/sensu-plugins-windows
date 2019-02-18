@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: false
+
 #
 #   check-windows-disk.rb
 #
@@ -79,7 +81,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
         next if config[:ignoretype] && config[:ignoretype].include?(type)
         next if config[:ignoremnt] && config[:ignoremnt].include?(mnt)
         next if config[:ignorelabel] && config[:ignorelabel].match(label)
-      rescue
+      rescue StandardError
         unknown "malformed line from df: #{line}"
       end
       # If label value is not set, the drive letter will end up in that column.  Set mnt to label in that case.

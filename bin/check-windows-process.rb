@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: false
+
 #
 #   check-windows-process.rb
 #
@@ -27,6 +29,7 @@
 require 'optparse'
 require 'time'
 require 'win32ole'
+require 'date'
 
 options = {}
 parser = OptionParser.new do |opts|
@@ -70,7 +73,7 @@ status = 2
 wmi.ExecQuery('select * from win32_process').each do |process|
   next unless process.Name.downcase.include? options[:procname].downcase
   if !options[:warn].nil?
-    delta_days = DateTime.now - DateTime.parse(process.CreationDate)
+    delta_days = DateTime.now - DateTime.parse(process.CreationDate) # rubocop:disable Style/DateTime
     delta_secs = (delta_days * 24 * 60 * 60).to_i
     if delta_secs > options[:warn]
       puts "OK: #{process.Name} running more than #{options[:warn]} seconds."
