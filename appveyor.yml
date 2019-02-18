@@ -9,9 +9,9 @@ environment:
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+    # appveyor does not seem to have a way to cleanup the env and does not actually start from scratch each time
+  - gem uninstall bundler || true
   - gem install bundler -v 1.7
-  # appveyor does not seem to have a way to cleanup the env and does not actually start from scratch each time
-  - gem uninstall bundler -v 2.0
   - bundle install
 
 build: off
