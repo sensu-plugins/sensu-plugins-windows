@@ -6,6 +6,21 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Security
+- updated yard dependency to `~> 0.9.11` per: https://nvd.nist.gov/vuln/detail/CVE-2017-17042 (@majormoses)
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@majormoses)
+
+### Breaking Changes
+- drop EOL rubies `< 2.3` (@majormoses)
+- bump `sensu-plugin` dependency from `~> 1.2` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29) (@majormoses)
+
+### Changed
+- update `bundler` dependency (@majormoses)
+- appeased the cops (@majormoses)
+
+### Removed
+- `codeclimate` (@majormoses)
+
 ## [2.9.1] - 2019-02-17
 ### Fixed
 - check-windows-disk.rb: use the full path for CSV file path due to a bug in `wmic` (@jasiek191)

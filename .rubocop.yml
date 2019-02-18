@@ -1,3 +1,6 @@
+# Support all non EOL rubies
+AllCops:
+  TargetRubyVersion: 2.3
 
 MethodLength:
   Max: 200
@@ -29,6 +32,13 @@ RegexpLiteral:
 Style/Documentation:
   Enabled: false
 
-Style/BlockLength:
+Metrics/BlockLength:
   Exclude:
     - 'test/**/*.rb'
+    - 'sensu-plugins-windows.gemspec'
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/EndOfLine:
+  EnforcedStyle: lf # 99% of the maintainers use some unix and so we need to assume that linux line endings are used
