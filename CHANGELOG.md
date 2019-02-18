@@ -5,6 +5,11 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [2.9.1] - 2019-02-17
+### Fixed
+- check-windows-disk.rb: use the full path for CSV file path due to a bug in `wmic` (@jasiek191)
+
 ## [2.9.0] - 2018-08-24
 ### Changed
 - updated check: `powershell/check-windows-disk-writeable.ps1` now using CIM instead of WMI for large performance gain (@csabo)
@@ -185,7 +190,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.1...HEAD
+[2.9.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.0...2.9.1
 [2.9.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.1...2.9.0
 [2.8.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.7.0...2.8.0
