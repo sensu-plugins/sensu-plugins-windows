@@ -6,6 +6,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+
+## [3.0.0] - 2019-03-04
 ### Security
 - updated yard dependency to `~> 0.9.11` per: https://nvd.nist.gov/vuln/detail/CVE-2017-17042 (@majormoses)
 - updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@majormoses)
@@ -205,7 +207,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.1...3.0.0
 [2.9.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.9.0...2.9.1
 [2.9.0]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.1...2.9.0
 [2.8.1]: https://github.com/sensu-plugins/sensu-plugins-Windows/compare/2.8.0...2.8.1
