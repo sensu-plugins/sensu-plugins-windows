@@ -45,7 +45,7 @@ class UptimeMetric < Sensu::Plugin::Metric::CLI::Graphite
     interface = config[:interface]
     timestamp = Time.now.utc.to_i
     IO.popen("typeperf -sc 1 \"\\Network Interface(#{interface})\\*\" ") do |io|
-      CSV.parse(io.read, headers: true) do |row|
+      CSV.parse(io.read.strip, headers: true) do |row|
         row.each do |k, v|
           next unless v && k
           break if v.start_with? 'Exiting'
