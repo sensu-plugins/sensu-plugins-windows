@@ -112,6 +112,40 @@ You should also include the full escaped path to the ruby interpreter in the che
 
 `Check failed to run: undefined method length' for nil:NilClass, "c:/opt/sensu/plugins/check-windows-ram.rb:45:inacquire_ram_usage'", "c:/opt/sensu/plugins/check-windows-ram.rb:54:in run'", "c:/opt/sensu/embedded/lib/ruby/gems/2.0.0/gems/sensu-plugin-1.`
 
+## Testing
+
+### Installation and Updates
+
+Windows Platform testing is moving to Pester as Powershell is the native language for the OS.
+
+All tests should be written using Pester 4 syntax. For the differences please read [this](https://github.com/pester/Pester/wiki/Migrating-from-Pester-3-to-Pester-4)
+
+In Windows 10 v1809 and higher, you first need to cleanup the default Pester module and only then you can proceed with the installation of higher version of Pester module.
+
+```powershell
+$module = "C:\Program Files\WindowsPowerShell\Modules\Pester"
+takeown /F $module /A /R
+icacls $module /reset
+icacls $module /grant Administrators:'F' /inheritance:d /T
+Remove-Item -Path $Module -Recurse -Force -Confirm:$false
+
+Install-Module -Name Pester -Force
+```
+
+For any subsequent update it is enough to run:
+
+```powershell
+Update-Module -Name Pester
+```
+
+### Running Tests
+
+From the root directory run
+
+```powershell
+Invoke-Pester
+```
+
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
