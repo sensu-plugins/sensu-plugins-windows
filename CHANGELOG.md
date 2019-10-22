@@ -5,7 +5,7 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-
+- update tests to favor Pester instead of Ruby (@derekgroh)
 
 ## [3.0.0] - 2019-03-04
 ### Security
