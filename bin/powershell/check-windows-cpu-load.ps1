@@ -47,11 +47,11 @@ $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
 
 $Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
 
-If ($Value -gt $CRITICAL) {
+If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
   Exit 2 }
 
-If ($Value -gt $WARNING) {
+If ($Value -ge $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
   Exit 1
 }

@@ -41,11 +41,11 @@ $Memory = (Get-CimInstance -ClassName Win32_OperatingSystem)
 
 $Value = [System.Math]::Round(((($Memory.TotalVisibleMemorySize-$Memory.FreePhysicalMemory)/$Memory.TotalVisibleMemorySize)*100),2)
 
-If ($Value -gt $CRITICAL) {
+If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsRAMLoad CRITICAL: RAM at $Value%.
   Exit 2 }
 
-If ($Value -gt $WARNING) {
+If ($Value -ge $WARNING) {
   Write-Host CheckWindowsRAMLoad WARNING: RAM at $Value%.
   Exit 1 }
 
