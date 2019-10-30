@@ -5,7 +5,7 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-
+- update cpu and memory checks to follow comparison operator in linux plugins check (greater than or equal to) (@derekgroh)
 
 ## [3.0.0] - 2019-03-04
 ### Security
