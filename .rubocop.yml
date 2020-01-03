@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 # Support all non EOL rubies
 AllCops:
   TargetRubyVersion: 2.3
@@ -40,5 +42,5 @@ Metrics/BlockLength:
 Style/SafeNavigation:
   Enabled: false
 
-Style/EndOfLine:
+Layout/EndOfLine:
   EnforcedStyle: lf # 99% of the maintainers use some unix and so we need to assume that linux line endings are used
