@@ -15,6 +15,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Breaking Changes
 - drop EOL rubies `< 2.3` (@majormoses)
 - bump `sensu-plugin` dependency from `~> 1.2` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29) (@majormoses)
+- moved all powershell scripts directly into the bin directory, you will need to update your check definition paths to reflect. This change is required to create an asset that works with sensu-go. `@derekgroh`
 
 ### Changed
 - update `bundler` dependency (@majormoses)
