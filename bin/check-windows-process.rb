@@ -43,7 +43,7 @@ parser = OptionParser.new do |opts|
   opts.on('-p', '--processname PROCESS', 'Unique process string to search for.') do |p|
     options[:procname] = p
     if p == ''
-      STDERR.puts 'Empty string for -p : Expected a string to match against.'
+      warn 'Empty string for -p : Expected a string to match against.'
       exit 3
     end
   end
@@ -53,7 +53,7 @@ parser = OptionParser.new do |opts|
     begin
       options[:warn] = Integer(w)
     rescue ArgumentError
-      STDERR.puts 'Optional -w needs to be a value in seconds'
+      warn 'Optional -w needs to be a value in seconds'
       exit 3
     end
   end
@@ -62,7 +62,7 @@ end
 parser.parse!
 
 if options[:procname] == ''
-  STDERR.puts 'Expected a process to match against.'
+  warn 'Expected a process to match against.'
   raise OptionParser::MissingArgument
 end
 
@@ -72,8 +72,9 @@ wmi = WIN32OLE.connect('winmgmts://')
 status = 2
 wmi.ExecQuery('select * from win32_process').each do |process|
   next unless process.Name.downcase.include? options[:procname].downcase
+
   if !options[:warn].nil?
-    delta_days = DateTime.now - DateTime.parse(process.CreationDate) # rubocop:disable Style/DateTime
+    delta_days = Date.now - Date.parse(process.CreationDate)
     delta_secs = (delta_days * 24 * 60 * 60).to_i
     if delta_secs > options[:warn]
       puts "OK: #{process.Name} running more than #{options[:warn]} seconds."

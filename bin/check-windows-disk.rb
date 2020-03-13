@@ -86,7 +86,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
       end
       # If label value is not set, the drive letter will end up in that column.  Set mnt to label in that case.
       mnt = label if mnt.nil?
-      prct_used = (100 * (1 - (_avail.to_f / capacity.to_f)))
+      prct_used = (100 * (1 - (_avail / capacity).to_f))
       if prct_used >= config[:crit]
         @crit_fs << "#{mnt} #{prct_used.round(2)}"
       elsif prct_used >= config[:warn]
