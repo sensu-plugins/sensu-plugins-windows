@@ -71,9 +71,9 @@ class CheckDisk < Sensu::Plugin::Check::CLI
     `wmic volume where DriveType=3 list brief /format:"%WINDIR%\\System32\\wbem\\en-US\\csv"`.split("\n").drop(1).each do |line|
       begin
         # #YELLOW
-        _hostname, capacity, type, _fs, _avail, label, mnt = line.split(',') # rubocop:disable Lint/UnderscorePrefixedVariableName
+        _hostname, capacity, type, _fs, avail, label, mnt = line.split(',')
         next if /\S/ !~ line
-        next if _avail.nil?
+        next if avail.nil?
         next if line.include?('System Reserved')
         next if line.include?('\Volume')
         next if config[:mount_points] && !config[:mount_points].include?(mnt)
@@ -86,7 +86,7 @@ class CheckDisk < Sensu::Plugin::Check::CLI
       end
       # If label value is not set, the drive letter will end up in that column.  Set mnt to label in that case.
       mnt = label if mnt.nil?
-      prct_used = (100 * (1 - (_avail / capacity).to_f))
+      prct_used = (100 * (1 - (avail / capacity).to_f))
       if prct_used >= config[:crit]
         @crit_fs << "#{mnt} #{prct_used.round(2)}"
       elsif prct_used >= config[:warn]
