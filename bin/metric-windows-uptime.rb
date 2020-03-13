@@ -42,7 +42,7 @@ class UptimeMetric < Sensu::Plugin::Metric::CLI::Graphite
     IO.popen('typeperf -sc 1 "\\System\\System Up Time" ') { |io| io.each { |line| temp_arr.push(line) } }
     uptime_str = temp_arr[2].split(',')[1]
     uptime = uptime_str.strip[1, uptime_str.length - 3]
-    [format('%.2f', uptime), timestamp]
+    [format("#{amount.round(2)}", uptime), timestamp]
   end
 
   def run
