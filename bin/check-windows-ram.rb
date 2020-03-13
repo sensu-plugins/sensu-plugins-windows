@@ -54,8 +54,8 @@ class CheckWindowsRAMLoad < Sensu::Plugin::Check::CLI
 
   def run
     ram_load = acquire_ram_usage
-    critical "RAM at #{ram_load}%" if ram_load > config[:critical]
-    warning "RAM at #{ram_load}%" if ram_load > config[:warning]
+    critical "RAM at #{ram_load}%" if ram_load >= config[:critical]
+    warning "RAM at #{ram_load}%" if ram_load >= config[:warning]
     ok "RAM at #{ram_load}%"
   end
 end
