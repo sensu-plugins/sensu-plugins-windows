@@ -29,7 +29,8 @@ Localhost,1152921504606846976,3,FAT32,1152921504574169088,OKDrive,D:\\'
       expect do
         begin
           check.run
-        rescue SystemExit # rubocop:disable HandleExceptions
+        rescue StandardError
+          exit
         end
       end
     end
