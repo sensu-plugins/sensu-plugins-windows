@@ -56,7 +56,7 @@ class UptimeMetric < Sensu::Plugin::Metric::CLI::Graphite
           next unless ifz && metric
 
           ifz_name = ifz[18, ifz.length - 19].tr('.', ' ')
-          value = format("#{amount.round(2)}", v.to_f)
+          value = format(v.round(2).to_s, v.to_f)
           name = [config[:scheme], ifz_name, metric].join('.').tr(' ', '_').tr('{}', '').tr('[]', '')
 
           output name, value, timestamp
