@@ -43,7 +43,7 @@ parser = OptionParser.new do |opts|
   opts.on('-p', '--processname PROCESS', 'Unique process string to search for.') do |p|
     options[:procname] = p
     if p == ''
-      warn 'Empty string for -p : Expected a string to match against.'
+      unknown 'Empty string for -p : Expected a string to match against.'
       exit 3
     end
   end
@@ -53,7 +53,7 @@ parser = OptionParser.new do |opts|
     begin
       options[:warn] = Integer(w)
     rescue ArgumentError
-      warn 'Optional -w needs to be a value in seconds'
+      unknown 'Optional -w needs to be a value in seconds'
       exit 3
     end
   end
