@@ -44,7 +44,6 @@ parser = OptionParser.new do |opts|
     options[:procname] = p
     if p == ''
       unknown 'Empty string for -p : Expected a string to match against.'
-      exit 3
     end
   end
 
@@ -54,7 +53,6 @@ parser = OptionParser.new do |opts|
       options[:warn] = Integer(w)
     rescue ArgumentError
       warn 'Optional -w needs to be a value in seconds'
-      exit 3
     end
   end
 end
