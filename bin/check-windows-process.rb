@@ -53,7 +53,7 @@ parser = OptionParser.new do |opts|
     begin
       options[:warn] = Integer(w)
     rescue ArgumentError
-      unknown 'Optional -w needs to be a value in seconds'
+      warn 'Optional -w needs to be a value in seconds'
       exit 3
     end
   end
@@ -62,8 +62,11 @@ end
 parser.parse!
 
 if options[:procname] == ''
-  warn 'Expected a process to match against.'
-  raise OptionParser::MissingArgument
+  begin
+    raise OptionParser::MissingArgument
+  rescue OptionParser::MissingArgument
+    unknown 'Expected a process to match against.'
+  end
 end
 
 wmi = WIN32OLE.connect('winmgmts://')
