@@ -25,7 +25,8 @@
 
 param(
     [string[]]$Interfaces,
-    [switch]$UseFullyQualifiedHostname
+    [switch]$UseFullyQualifiedHostname,
+    [switch]$ListInterfaces
     )
 
 $ThisProcess = Get-Process -Id $pid
@@ -40,18 +41,36 @@ if ($UseFullyQualifiedHostname -eq $false) {
 }
 
 $perfCategoryID = Get-PerformanceCounterByID -Name 'Network Interface'
+if ($perfCategoryID.Length -eq 0 ) {
+  Write-Host "perfCategoryID: is Null"
+  Exit 2
+}
 $localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
 
 for($i = 0; $i -lt $Interfaces.Count; $i+=1) {
     $tmp = $Interfaces[$i]
-    $Interfaces[$i] = $tmp.Replace("_"," ")
+    $Interfaces[$i] = $tmp.Replace(" ","_")
 }
 
 foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) 
 { 
+  $instanceName=$ObjNet.InstanceName.ToString().Replace(" ","_")
+  if ($ListInterfaces -eq $true) {
+    $str = $ObjNet.InstanceName.ToString()
+    Write-Host "$str :: $instanceName"
+    Break
+  }
 
-  if ($Interfaces.Contains($ObjNet.InstanceName)) {
+  $include = $false
+  if ($Interfaces.Count -eq 0) {
+    $include = $true
+  } else {
+    if ($Interfaces.Contains($instanceName)) {
+      $include = $true
+    }
+ }
 
+ if ( $include -eq $true ) {
      $Measurement = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
 
 	 $Measurement = $Measurement.Remove(0,$Measurement.IndexOf("."))   
@@ -73,3 +92,4 @@ foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").Counte
    }
 
 }
+
