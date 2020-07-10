@@ -5,7 +5,13 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changes
 - update tests to favor Pester instead of Ruby (@derekgroh)
+### Breaking Changes
+- update metrics-windows-network.ps1 -Interface argument handling to work with Interfaces names that contain underscores
+### Added
+- Add new -ListInterfaces option to metrics-windows-network.ps1 to get a list of valid Network Addresses
+- Add new ability to metrics-windows-network.psi to output metrics for all Interfaces if no Interface is specified.
 
 ## [3.0.0] - 2019-03-04
 ### Security
