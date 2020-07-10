@@ -52,6 +52,11 @@ for($i = 0; $i -lt $Interfaces.Count; $i+=1) {
     $Interfaces[$i] = $tmp.Replace(" ","_")
 }
 
+if ($ListInterfaces -eq $true) {
+  Write-Host "List of Available Interface Names"
+  Write-Host "Full Name :: Underscore Modified Name"
+  Write-Host "-------------------------------------"
+}
 foreach ($ObjNet in (Get-Counter -Counter "\$localizedCategoryName(*)\*").CounterSamples) 
 { 
   $instanceName=$ObjNet.InstanceName.ToString().Replace(" ","_")
