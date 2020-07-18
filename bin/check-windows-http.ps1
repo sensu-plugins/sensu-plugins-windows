@@ -26,7 +26,9 @@
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-   [string]$CheckAddress
+   [string]$CheckAddress,
+  [Parameter(Mandatory=$False,Position=2)]
+   [string]$ContentSubstring
 )
 
 $ThisProcess = Get-Process -Id $pid
@@ -47,8 +49,20 @@ if (!$Available) {
 
 if ($Available) {
    if ($Available.statuscode -eq 200) {
-      Write-Host OK: $CheckAddress is available!
-      Exit 0
+      if ($ContentSubString) {
+        $output=$Available.ToString()
+        $result = $output -match $ContentSubString
+        if ($result) {
+          Write-Host OK: $CheckAddress is available and Content contains $ContentSubString
+          Exit 0
+        } else {
+          Write-Host CRITICAL: $CheckAddress is available but Content does not contain $ContentSubString
+          Exit 2
+        }
+      } else {
+        Write-Host OK: $CheckAddress is available!
+        Exit 0
+      }
    } else {
       Write-Host CRITICAL: URL $CheckAddress is not accessible!
       Exit 2

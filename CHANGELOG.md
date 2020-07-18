@@ -12,6 +12,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - Add new -ListInterfaces option to metrics-windows-network.ps1 to get a list of valid Network Addresses
 - Add new ability to metrics-windows-network.psi to output metrics for all Interfaces if no Interface is specified.
+- Add new option to check-windows-http.ps1 to check to match substring in response content.
 
 ## [3.0.0] - 2019-03-04
 ### Security
