@@ -52,7 +52,7 @@ These files provide basic Checks and Metrics for a Windows system.
 
 ##### Example 1:
 
-Execute Powershell functions using the helper (No copy needed), see example below:
+Execute Powershell functions using the helper (No copy needed), as shown in the example below:
 
 ```json
   {
