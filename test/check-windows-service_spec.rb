@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../bin/check-windows-service.rb'
+require_relative '../bin/check-windows-service'
 
 describe CheckWinService do
   before(:all) do

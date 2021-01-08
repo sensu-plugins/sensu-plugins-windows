@@ -2,7 +2,7 @@ inherit_from: .rubocop_todo.yml
 
 # Support all non EOL rubies
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 MethodLength:
   Max: 200
