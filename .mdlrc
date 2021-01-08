@@ -1,0 +1,2 @@
+# https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md
+rules "~MD013", "~MD022", "~MD024", "~ND032"
