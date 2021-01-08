@@ -14,7 +14,7 @@
 #   Powershell 3.0 or above
 #
 # USAGE:
-#   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-disk.ps1 90 95 ab
+#   Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File check-windows-disk.ps1 -Warning 90 -Critical 95
 #
 # NOTES:
 #  
@@ -38,13 +38,28 @@ Param(
   [string]$IGNORE
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+} 
+
+# Set the process priority
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
+# Set $IGNORE and $INCLUDE values if not provided.
 If ($IGNORE -eq "") {
   $IGNORE = "ab" 
 }
 
+# Select all fixed local disks (3) which are $INCLUDE and not $IGNORE
 $AllDisks = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = 3" | Where-Object { $_.DeviceID -notmatch "[$IGNORE]:"}
 
 $crit = 0
@@ -70,15 +85,15 @@ foreach ($ObjDisk in $AllDisks) {
 
 if ($crit -ne 0) {
   if ($warn -ne 0 ){
-    Write-Host "CheckDisk CRITICAL: $crit disks in critical state `n$critDisks;`n$warn disks in warning state:`n$warnDisks"
+    Write-Host "CheckDisk CRITICAL: $crit disks in critical state `n$critDisks;`nCheckDisk WARNING: $warn disks in warning state:`n$warnDisks"
   } else {
     Write-Host "CheckDisk CRITICAL: $crit disks in critical state `n$critDisks"
   }
-  exit 2
+  ExitWithCode 2
 } elseif ($warn -ne 0) {
   Write-Host "CheckDisk WARNING: $warn disks in warning state `n$warnDisks"
-  exit 1
+  ExitWithCode 1
 } 
   
 Write-Host "CheckDisk OK: All disk usage under $WARNING%."
-Exit 0
+ExitWithCode 0

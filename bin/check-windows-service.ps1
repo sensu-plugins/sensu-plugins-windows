@@ -31,6 +31,17 @@ Param(
    [string]$ServiceName
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -39,13 +50,13 @@ $Exists = Get-Service $ServiceName -ErrorAction SilentlyContinue
 If ($Exists) {
   If (($Exists).Status -eq "Running") {
     Write-Host OK: $ServiceName Running.
-    Exit 0 }
+    ExitWithCode 0 }
 
   If (($Exists).Status -eq "Stopped") {
     Write-Host CRITICAL: $ServiceName Stopped.
-    Exit 2 }
+    ExitWithCode 2 }
 }
 
 If (!$Exists) {
   Write-Host CRITICAL: $ServiceName not found!
-  Exit 2 }
+  ExitWithCode 2 }

@@ -34,6 +34,18 @@ Param(
    [int]$CRITICAL
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
+
 . (Join-Path $PSScriptRoot perfhelper.ps1)
 
 $ThisProcess = Get-Process -Id $pid
@@ -49,14 +61,14 @@ $Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$loc
 
 If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
-  Exit 2 }
+  ExitWithCode 2 }
 
 If ($Value -ge $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
-  Exit 1
+  ExitWithCode 1
 }
 
 Else {
   Write-Host CheckWindowsCpuLoad OK: CPU at $Value%.
-  Exit 0 
+  ExitWithCode 0 
 }

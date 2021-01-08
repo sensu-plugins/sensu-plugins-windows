@@ -26,6 +26,17 @@ Param(
   [string]$Pattern
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 #Search for pattern inside of File
 $ThisEvent = Get-WinEvent $LogName -ErrorAction SilentlyContinue | Where {$_.Message -like "*$($Pattern)*"}
 
@@ -40,12 +51,12 @@ $CountWarns=($ThisEvent | Where{$_.LevelDisplayName -eq 'Warning'}).count
 #Prints count of how many ciritials and warnings
 If($CountCrits -eq 0 -And $CountWarns -eq 0){
   "CheckLog OK: $CountCrits criticals $CountWarns warnings"
-   EXIT 0
+   ExitWithCode 0
 }ElseIF ($CountCrits -gt 0) {
     "CheckLog CRITICAL: $CountCrits criticals $CountWarns warnings"
-    EXIT 2
+    ExitWithCode 2
 }
 Else {
     "CheckLog WARNING: $CountCrits criticals $CountWarns warnings"
-    EXIT 1
+    ExitWithCode 1
 }

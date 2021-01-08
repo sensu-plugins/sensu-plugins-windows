@@ -29,6 +29,18 @@ Param(
    [string]$CheckAddress
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -48,9 +60,9 @@ if (!$Available) {
 if ($Available) {
    if ($Available.statuscode -eq 200) {
       Write-Host OK: $CheckAddress is available!
-      Exit 0
+      ExitWithCode 0
    } else {
       Write-Host CRITICAL: URL $CheckAddress is not accessible!
-      Exit 2
+      ExitWithCode 2
    }
 }

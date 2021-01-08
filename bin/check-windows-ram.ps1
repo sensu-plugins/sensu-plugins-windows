@@ -34,6 +34,17 @@ Param(
    [int]$CRITICAL
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -43,12 +54,12 @@ $Value = [System.Math]::Round(((($Memory.TotalVisibleMemorySize-$Memory.FreePhys
 
 If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsRAMLoad CRITICAL: RAM at $Value%.
-  Exit 2 }
+  ExitWithCode 2 }
 
 If ($Value -ge $WARNING) {
   Write-Host CheckWindowsRAMLoad WARNING: RAM at $Value%.
-  Exit 1 }
+  ExitWithCode 1 }
 
 Else {
   Write-Host CheckWindowsRAMLoad OK: RAM at $Value%.
-  Exit 0 }
+  ExitWithCode 0 }
