@@ -43,8 +43,7 @@ parser = OptionParser.new do |opts|
   opts.on('-p', '--processname PROCESS', 'Unique process string to search for.') do |p|
     options[:procname] = p
     if p == ''
-      warn 'Empty string for -p : Expected a string to match against.'
-      exit 3
+      unknown 'Empty string for -p : Expected a string to match against.'
     end
   end
 
@@ -54,7 +53,6 @@ parser = OptionParser.new do |opts|
       options[:warn] = Integer(w)
     rescue ArgumentError
       warn 'Optional -w needs to be a value in seconds'
-      exit 3
     end
   end
 end
@@ -62,8 +60,11 @@ end
 parser.parse!
 
 if options[:procname] == ''
-  warn 'Expected a process to match against.'
-  raise OptionParser::MissingArgument
+  begin
+    raise OptionParser::MissingArgument
+  rescue OptionParser::MissingArgument
+    unknown 'Expected a process to match against.'
+  end
 end
 
 wmi = WIN32OLE.connect('winmgmts://')
