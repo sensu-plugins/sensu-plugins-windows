@@ -30,8 +30,6 @@ param(
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
-
 if ($UseFullyQualifiedHostname -eq $false) {
     $Path = ($env:computername).ToLower()
 }else {
@@ -52,7 +50,7 @@ foreach ($counter in $counters) {
 
 $perfCounterID = Get-PerformanceCounterByID -Name $counter
 $localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
-$value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+$value = [System.Math]::Round((Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue)
 
 $Time = DateTimeToUnixTimestamp -DateTime (Get-Date)
 

@@ -46,22 +46,15 @@ function ExitWithCode
     exit
 }
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
-
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
-$perfCounterID = Get-PerformanceCounterByID -Name '% Processor Time'
-
-$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
-$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
-
-$Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+$Value = [System.Math]::Round((Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue)
 
 If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
-  ExitWithCode 2 }
+  ExitWithCode 2 
+}
 
 If ($Value -ge $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
