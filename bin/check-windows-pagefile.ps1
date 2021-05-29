@@ -34,6 +34,17 @@ Param(
    [int]$CRITICAL
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -44,12 +55,12 @@ $ThisProcess.PriorityClass = "BelowNormal"
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsPagefile CRITICAL: Pagefile usage at $Value%.
-  Exit 2 }
+  ExitWithCode 2 }
 
 If ($Value -gt $WARNING) {
   Write-Host CheckWindowsPagefile WARNING: Pagefile usage at $Value%.
-  Exit 1 }
+  ExitWithCode 1 }
 
 Else {
   Write-Host CheckWindowsPagefile OK: Pagefile usage at $Value%.
-  Exit 0 }
+  ExitWithCode 0 }

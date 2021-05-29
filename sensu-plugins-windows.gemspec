@@ -15,16 +15,18 @@ Gem::Specification.new do |s|
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-windows'
   s.license                = 'MIT'
-  s.metadata               = { 'maintainer' => 'sensu-plugin',
-                               'development_status' => 'active',
-                               'production_status' => 'unstable - testing recommended',
-                               'release_draft' => 'false',
-                               'release_prerelease' => 'false' }
+  s.metadata               = {
+    'maintainer' => 'sensu-plugin',
+    'development_status' => 'active',
+    'production_status' => 'unstable - testing recommended',
+    'release_draft' => 'false',
+    'release_prerelease' => 'false'
+  }
   s.name                   = 'sensu-plugins-windows'
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
-  s.required_ruby_version  = '>= 2.3.0'
+  s.required_ruby_version  = '>= 2.4.0'
   s.summary                = 'Sensu plugins for Windows'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsWindows::Version::VER_STRING
@@ -38,6 +40,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake',                      '~> 13.0'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'rspec',                     '~> 3.1'
-  s.add_development_dependency 'rubocop',                   '~> 0.81.0'
+  s.add_development_dependency 'rubocop',                   '~> 0.80.1'
   s.add_development_dependency 'yard',                      '~> 0.9.11'
 end

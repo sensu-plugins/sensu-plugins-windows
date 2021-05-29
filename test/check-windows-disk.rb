@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../bin/check-windows-disk.rb'
+require_relative '../bin/check-windows-disk'
 
 describe CheckDisk do
   before(:all) do

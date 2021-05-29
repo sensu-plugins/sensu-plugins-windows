@@ -21,13 +21,25 @@ Param(
   [string]$Dir
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
+
 $ThisDir = Test-Path -Path $Dir
 
 #Shows diretory if it exist
 if ($ThisDir) {
     "CheckDirectory OK: Directory exist"
-    EXIT 0
+    ExitWithCode 0
 }else {
     "CheckDirectory CRITICAL: Directory doesn't exist"
-    EXIT 2
+    ExitWithCode 2
 }

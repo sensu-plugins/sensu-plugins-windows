@@ -30,6 +30,17 @@ Param(
    [string]$ProcessName
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -37,8 +48,8 @@ $Exists = Get-Process $ProcessName -ErrorAction SilentlyContinue
 
 If (!$Exists) {
   Write-Host CRITICAL: $ProcessName not found!
-  Exit 2 }
+  ExitWithCode 2 }
 
 If ($Exists) {
   Write-Host OK: $ProcessName running.
-  Exit 0 }
+  ExitWithCode 0 }

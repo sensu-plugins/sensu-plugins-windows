@@ -1,11 +1,14 @@
 # Change Log
+
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md).
+This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md).
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
 ### Changes
+- update powershell checks to provide the proper exitcode (@derekgroh)
 - update tests to favor Pester instead of Ruby (@derekgroh)
 ### Breaking Changes
 - update metrics-windows-network.ps1 -Interface argument handling to work with Interfaces names that contain underscores

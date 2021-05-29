@@ -34,6 +34,18 @@ Param(
    [int]$CRITICAL
 )
 
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
+
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
@@ -41,12 +53,12 @@ $Value = (Get-CimInstance -className Win32_PerfFormattedData_PerfOS_System).Proc
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsProcessorQueueLength CRITICAL: Processor Queue at $Value.
-  Exit 2 }
+  ExitWithCode 2 }
 
 If ($Value -gt $WARNING) {
   Write-Host CheckWindowsProcessorQueueLength WARNING: Processor Queue at $Value.
-  Exit 1 }
+  ExitWithCode 1 }
 
 Else {
   Write-Host CheckWindowsProcessorQueueLength OK: Processor Queue at $Value.
-  Exit 0 }
+  ExitWithCode 0 }

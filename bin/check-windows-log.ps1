@@ -25,16 +25,26 @@ Param(
   [Parameter(Mandatory=$True)]
   [string]$Pattern
 )
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
 
+    $host.SetShouldExit($exitcode)
+    exit
+}
 #Search for pattern inside of File
 $ThisLog = Select-String -Path $LogPath -Pattern $Pattern -AllMatch
 
 #Show matched lines if they exist
 If($ThisLog -eq $null ){
   "CheckLog OK: The pattern doesn't exist in log"
-  EXIT 0
+  ExitWithCode 0
 }else{
   $ThisLog
   "CheckLog CRITICAL"
-  EXIT 2
+  ExitWithCode 2
 }

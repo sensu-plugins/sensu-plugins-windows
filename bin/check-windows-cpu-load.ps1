@@ -34,29 +34,34 @@ Param(
    [int]$CRITICAL
 )
 
-. (Join-Path $PSScriptRoot perfhelper.ps1)
+# Function to help the exitcode be seen by Sensu
+function ExitWithCode
+{
+    param
+    (
+        $exitcode
+    )
+
+    $host.SetShouldExit($exitcode)
+    exit
+}
 
 $ThisProcess = Get-Process -Id $pid
 $ThisProcess.PriorityClass = "BelowNormal"
 
-$perfCategoryID = Get-PerformanceCounterByID -Name 'Processor Information'
-$perfCounterID = Get-PerformanceCounterByID -Name '% Processor Time'
-
-$localizedCategoryName = Get-PerformanceCounterLocalName -ID $perfCategoryID
-$localizedCounterName = Get-PerformanceCounterLocalName -ID $perfCounterID
-
-$Value = [System.Math]::Round((Get-Counter "\$localizedCategoryName(_total)\$localizedCounterName" -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue)
+$Value = [System.Math]::Round((Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue)
 
 If ($Value -ge $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
-  Exit 2 }
+  ExitWithCode 2 
+}
 
 If ($Value -ge $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
-  Exit 1
+  ExitWithCode 1
 }
 
 Else {
   Write-Host CheckWindowsCpuLoad OK: CPU at $Value%.
-  Exit 0 
+  ExitWithCode 0 
 }
